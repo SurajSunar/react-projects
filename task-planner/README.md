@@ -3,7 +3,7 @@
 * Default priority set are Highest, Medium and Lowest
 * User should be able to create, update and delete task
 * There is one provision to filter tasks based on filter
-
+* Add card and table view - coming soon
 
 ## Stacks used:
 - React 19
@@ -12,4 +12,4 @@
 - Ant Design Components
 - React Toastify
 - Zustand
-- uuidgit a
+- uuidgit 
