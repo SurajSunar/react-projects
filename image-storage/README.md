@@ -12,3 +12,6 @@ This project is developed to store images using zustand and its persist concept.
 - Zustand
 - Ant design
 
+## Possibilities 
+- Link it with backend API
+- Storage can be used as supabase or any other  
