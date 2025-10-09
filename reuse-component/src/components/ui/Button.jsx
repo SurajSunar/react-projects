@@ -20,7 +20,7 @@ const SIZES = {
 const Button = ({children, classes, theme = 'primary', size = 'md', loading, onclick = ()=> null}) => {
 
   return (
-    <button className={`${THEMES[theme]} ${SIZES[size]}  rounded-lg text-white capitalize flex gap-x-2 ${classes}`} onclick={onclick}>
+    <button className={`${THEMES[theme]} ${SIZES[size]}  rounded-lg text-white capitalize flex gap-x-2 ${classes}`} onClick={onclick}>
         {loading && <LoaderCircle className="animate-spin" />}
         {children}
     </button>

@@ -1,0 +1,37 @@
+{
+  "hash": "c67a183f",
+  "configHash": "575c9085",
+  "lockfileHash": "3c8b757f",
+  "browserHash": "32772bc3",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "d7c970a0",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "ac93d68e",
+      "needsInterop": true
+    },
+    "lucide-react": {
+      "src": "../../node_modules/lucide-react/dist/esm/lucide-react.js",
+      "file": "lucide-react.js",
+      "fileHash": "3613b406",
+      "needsInterop": false
+    },
+    "@wavesurfer/react": {
+      "src": "../../node_modules/@wavesurfer/react/dist/index.js",
+      "file": "@wavesurfer_react.js",
+      "fileHash": "d95ca12b",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-ZZLEEZYP": {
+      "file": "chunk-ZZLEEZYP.js"
+    }
+  }
+}

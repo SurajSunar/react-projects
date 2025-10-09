@@ -1,6 +1,9 @@
 import Button from "./components/ui/Button";
 
 const App = () => {
+  const app = 'qeqwe'
+  console.log(app);
+  
   return (
     <div className="bg-gray-100 h-screen space-y-8">
       <div className="flex flex-col gap-y-4 justify-center items-center w-full">

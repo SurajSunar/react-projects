@@ -133,6 +133,12 @@ const App = () => {
             {mute ? <VolumeOff /> : <Volume2Icon />}
           </div>
         </div>
+
+        <div className="w-full h-[200px] bg-gray-300 flex relative">
+
+          <div className="absolute top-1/2 left-1/2 transform-[-50% -50%]">center it</div>
+        
+        </div>
       </div>
     </div>
   );
