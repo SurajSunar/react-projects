@@ -1,5 +1,5 @@
 import { AlignLeft, AlignRight, NotebookIcon, PowerOffIcon, Settings, SignalZero } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useIsMobile } from "./hooks/useIsMobile";
 
 const App = () => {
@@ -13,14 +13,12 @@ const App = () => {
 
   return (
     <div className="bg-gray-100 min-h-screen">
-      {/* <div className="flex">
-        <sidebar className="bg-gradient-to-r from-amber-500 via-amber-400 to-amber-300 h-screen flex fixed duration-200" style={{ width: width, zIndex: width > 0 ? 1 : 0 }}>
+      <div className="flex">
+        <aside className="bg-gradient-to-r from-amber-500 via-amber-400 to-amber-300 h-screen flex fixed duration-200" style={{ width: width, zIndex: width > 0 ? 1 : 0 }}>
           {width > 0 && <p className="p-4">Sidebar</p>}
-        </sidebar>
-        
-      </div> */}
-      <div className="grow duration-200" style={{ marginLeft: mobileDevice ? 0 : width }}>
-          <header className="p-4 bg-gradient-to-r from-orange-600 via-orange-400 to-orange-200 sticky flex justify-between items-center">
+        </aside>
+        <div className="grow duration-200" style={{ marginLeft: mobileDevice ? 0 : width }}>
+          <header className="p-4 bg-gradient-to-r from-orange-600 via-orange-400 to-orange-200 sticky top-0 left-0 flex justify-between items-center">
             <AlignLeft className=" hover:bg-orange-500 hover:scale-110 hover:duration-200 hover:cursor-pointer" onClick={handleSize}/>
             <div className="flex gap-4">
               <NotebookIcon />
@@ -40,6 +38,7 @@ const App = () => {
 
           </section>
         </div>
+      </div>
     </div>
   );
 };
