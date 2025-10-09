@@ -10,7 +10,6 @@ const App = () => {
     setWidth(width > 0 ? 0 : 280)
   }
 
-
   return (
     <div className="bg-gray-100 min-h-screen">
       <div className="flex">
