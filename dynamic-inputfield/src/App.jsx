@@ -1,3 +1,4 @@
+import { Delete, DeleteIcon, Trash2 } from "lucide-react";
 import React, { useState } from "react";
 
 const App = () => {
@@ -20,18 +21,21 @@ const App = () => {
     setForm((prev) => ({ ...prev, fields: [...form.fields] }));
   };
 
-  const validate = () => form.fields.every(field => field.value)
+  const removeField = (name) => {
+    form.fields = form.fields.filter((field) => field.name !== name);
+    setForm((prev) => ({ ...prev, fields: [...form.fields] }));
+  };
+
+  const validate = () => form.fields.every((field) => field.value);
 
   const submitForm = (e) => {
     e.preventDefault();
     setSubmitted(true);
-    
-    
-    if(validate()) {
-      console.log(form.fields);
-      //do any api call here... 
-    }
 
+    if (validate()) {
+      console.log(form.fields);
+      //do any api call here...
+    }
   };
 
   return (
@@ -50,13 +54,21 @@ const App = () => {
                   value={input.value}
                   onChange={(e) => handleInputChange(e, index)}
                 ></input>
+                {
+                  form.fields.length > 1 && <Trash2
+                  className="text-red-500 cursor-pointer"
+                  onClick={() => removeField(input.name)}
+                />
+                }
               </div>
-              {submitted && !input.value && <p className="text-red-500 text-sm ml-8">Input is required</p>}
+              {submitted && !input.value && (
+                <p className="text-red-500 text-sm ml-8">Input is required</p>
+              )}
             </div>
           ))}
           <div className="self-end">
             <button
-              className="hover:underline self-end"
+              className="hover:underline self-end cursor-pointer"
               onClick={(e) => addMoreField(e)}
             >
               Add More
@@ -64,7 +76,7 @@ const App = () => {
           </div>
           <div className="">
             <button
-              className="bg-blue-800 text-white rounded-lg  px-4 py-2 self-end"
+              className="bg-blue-800 text-white rounded-lg  px-4 py-2 self-end cursor-pointer"
               type="submit"
             >
               Submit
