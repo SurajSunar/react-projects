@@ -40,7 +40,7 @@ const App = () => {
 
   return (
     <div className="bg-gray-50 h-screen">
-      <div className="w-1/3 bg-gray-100 p-4 flex justify-center mx-auto flex-col">
+      <div className="w-1/3 bg-gray-100 p-4 flex justify-center mx-auto flex-col relative top-[50px] rounded-lg">
         <h1 className="text-2xl font-semibold mb-2">Input Form</h1>
         <form className="flex flex-col gap-y-4" onSubmit={submitForm}>
           {form.fields.map((input, index) => (
@@ -68,7 +68,7 @@ const App = () => {
           ))}
           <div className="self-end">
             <button
-              className="hover:underline self-end cursor-pointer"
+              className="hover:underline hover:text-blue-800 self-end cursor-pointer"
               onClick={(e) => addMoreField(e)}
             >
               Add More
