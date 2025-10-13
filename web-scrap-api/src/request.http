@@ -1,0 +1,6 @@
+POST http://localhost:3000/images
+Content-Type: application/json
+
+{
+    "url": "https://codingott.com"
+}
