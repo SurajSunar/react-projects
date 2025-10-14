@@ -11,7 +11,6 @@ const App = () => {
   const [result, setResult] = useState();
   const [status, setStatus] = useState();
   const [loading, setLoading] = useState();
-  const [error, setError] = useState();
 
   const submitForm = async () => {
     const values = form.getFieldValue();
@@ -24,6 +23,7 @@ const App = () => {
       });
       setResult(JSON.stringify(response.data, null, 2));
       setStatus(response.status);
+      toast.success('Data Fetched successfully')
     } catch (error) {
       setStatus(error.status || 500);
       toast.error("Network Issue", error);
