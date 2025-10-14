@@ -32,8 +32,8 @@ const App = () => {
             onChange={(e) => setUrl(e.target.value)}
           />
           <button
-             disabled={loading}
-            className="bg-blue-800 text-white rounded-lg px-4 py-2 disabled:bg-gray-600 cursor-pointer"
+             disabled={loading || !url}
+            className="bg-blue-800 text-white rounded-lg px-4 py-2 disabled:bg-gray-600 disabled:cursor-not-allowed cursor-pointer"
             onClick={fetchImages}
           >
             Get Images
