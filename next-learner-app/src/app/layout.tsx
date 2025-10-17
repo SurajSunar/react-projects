@@ -27,6 +27,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <header>
+          <h1 className="text-2xl font-bold text-white bg-gradient-to-r from-orange-800 via-orange-600 to-orange-300 text-center p-4">Welcome to Next Learner App</h1>
+        </header>
         {children}
       </body>
     </html>
