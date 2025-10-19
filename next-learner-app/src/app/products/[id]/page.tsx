@@ -10,7 +10,7 @@ const getProduct = async (
     setTimeout(
       () =>
         resolve({ id, name: "Mobile XP", desc: "Latest mobile", price: 1200 }),
-      2000
+      3000
     )
   );
 };
