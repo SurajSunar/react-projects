@@ -1,3 +1,20 @@
+import { title } from "process";
+
+
+export const generateMetadata =  async ({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) => {
+    const { id } = await params;
+
+  return {
+    title: `product-${id}`,
+    description: `This will describe for product ID - ${id}`
+  }
+}
+
+
 const getProduct = async (
   id: number
 ): Promise<{

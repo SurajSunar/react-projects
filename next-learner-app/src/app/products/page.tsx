@@ -1,3 +1,10 @@
+
+export const metadata = {
+    title: 'Product List',
+    description: 'Display all products of related category'
+}
+
+
 export default function ProductsList() {
     const products = [
         {
