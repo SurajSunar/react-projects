@@ -7,6 +7,7 @@ import { toast, ToastContainer } from "react-toastify";
 const CartListPage = () => {
   const { isPending, error, data } = useQuery({
     queryKey: ["repoData"],
+    refetchInterval: 1,
     queryFn: () =>
       fetch("https://dummyjson.com/carts").then((res) => res.json()),
   });
