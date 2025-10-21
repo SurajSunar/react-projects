@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { QueryClientProvider, useQueryClient } from "@tanstack/react-query";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,7 +29,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <header>
-          <h1 className="text-2xl font-bold text-white bg-gradient-to-r from-orange-800 via-orange-600 to-orange-300 text-center p-4">Welcome to Next Learner App</h1>
+          <h1 className="text-2xl font-bold text-white bg-gradient-to-r from-orange-800 via-orange-600 to-orange-300 text-center p-4">
+            Welcome to Next Learner App
+          </h1>
         </header>
         {children}
       </body>
