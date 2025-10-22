@@ -1,13 +1,14 @@
 "use client";
 
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import { toast, ToastContainer } from "react-toastify";
 
 const CartListPage = () => {
+  const queryClient = useQueryClient();
+
   const { isPending, error, data } = useQuery({
     queryKey: ["repoData"],
-    refetchInterval: 1,
     queryFn: () =>
       fetch("https://dummyjson.com/carts").then((res) => res.json()),
   });
@@ -34,6 +35,7 @@ const CartListPage = () => {
     },
     onSuccess: () => {
       toast.success("Added to cart");
+      queryClient.invalidateQueries({ queryKey: ["repoData"] });
     },
     onError: () => {
       toast.error("Error in adding to cart");
