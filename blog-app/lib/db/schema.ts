@@ -7,6 +7,7 @@ import {
   timestamp,
   varchar,
 } from "drizzle-orm/pg-core";
+import { use } from "react";
 
 export const user = pgTable("user", {
   id: varchar("id", { length: 255 }).primaryKey(),
@@ -81,3 +82,5 @@ export const sessionRelations = relations(session, ({ one }) => ({
     references: [user.id],
   }),
 }));
+
+export const schema = { user, session, account, post };

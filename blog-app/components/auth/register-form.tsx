@@ -15,6 +15,8 @@ import {
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Loader2 } from "lucide-react";
+import { signUp } from "@/lib/auth-client";
+import { toast } from "sonner";
 
 const registerSchema = z
   .object({
@@ -30,7 +32,11 @@ const registerSchema = z
 
 type RegisterFormValues = z.infer<typeof registerSchema>;
 
-const Registerform = () => {
+interface RegisterFormProps {
+  onSuccess: () => void;
+}
+
+const Registerform = ({ onSuccess }: RegisterFormProps) => {
   const [isLoading, setIsLoading] = useState(false);
 
   //set init form
@@ -44,8 +50,25 @@ const Registerform = () => {
     },
   });
 
-  const onSubmit = (values: RegisterFormValues) => {
-    setIsLoading(true);
+  const onSubmit = async (values: RegisterFormValues) => {
+    try {
+      setIsLoading(true);
+      const { error } = await signUp.email({
+        ...values,
+      });
+
+      if (error) {
+        toast.error("Issue in creating the account");
+      } else {
+        toast.success("Account created successfully");
+        onSuccess();
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+
     console.log(values);
   };
 

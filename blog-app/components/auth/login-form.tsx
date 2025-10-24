@@ -15,6 +15,9 @@ import {
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Loader2 } from "lucide-react";
+import { signIn } from "@/lib/auth-client";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const loginSchema = z.object({
   email: z.email("Enter valid email"),
@@ -25,6 +28,7 @@ type LoginFormValues = z.infer<typeof loginSchema>;
 
 const Loginform = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   //set init form
   const form = useForm<LoginFormValues>({
@@ -35,9 +39,24 @@ const Loginform = () => {
     },
   });
 
-  const onSubmit = (value: LoginFormValues) => {
-    setIsLoading(true);
-    console.log(value);
+  const onSubmit = async (values: LoginFormValues) => {
+    try {
+      setIsLoading(true);
+      const { error } = await signIn.email({
+        ...values,
+      });
+
+      if (error) {
+        toast.error(error.message);
+      } else {
+        toast.success("SignIn successfully");
+        router.push("/");
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

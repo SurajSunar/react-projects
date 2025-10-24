@@ -20,7 +20,7 @@ const AuthLayout = () => {
             <Loginform />
           </TabsContent>
           <TabsContent value="register">
-            <Registerform />
+            <Registerform onSuccess={() => setTab("login")} />
           </TabsContent>
         </Tabs>
       </div>

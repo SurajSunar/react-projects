@@ -1,9 +1,21 @@
 import { betterAuth } from "better-auth";
-import { fa, tr } from "zod/v4/locales";
+import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { db } from "./db";
+import * as schema from "./db/schema";
+
 export const auth = betterAuth({
   appName: "Blog app using NextJS",
   secret: process.env.BETTER_AUTH_SECRET,
   baseURL: process.env.BETTER_AUTH_BASE_URL,
+  database: drizzleAdapter(db, {
+    provider: "pg",
+    schema: {
+      ...schema,
+      user: schema.user,
+      session: schema.session,
+      account: schema.account,
+    },
+  }),
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: false,
