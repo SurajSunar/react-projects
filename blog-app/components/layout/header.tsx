@@ -1,10 +1,11 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { signOut, useSession } from "@/lib/auth-client";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
+import UserMenu from "../auth/user-menu";
+import { useTheme } from "next-themes";
+import { Lightbulb, LightbulbOff } from "lucide-react";
+import ThemeToggle from "../theme/theme-toggle";
 
 const navItems = [
   {
@@ -19,22 +20,6 @@ const navItems = [
 
 export default function Header() {
   const { data } = useSession();
-  const router = useRouter();
-
-  const logout = async () => {
-    try {
-      const { error } = await signOut();
-      router.push("/auth");
-
-      if (error) {
-        toast.error("Logged out successfully");
-      } else {
-        toast.success("Logged out successfully");
-      }
-    } catch (e) {
-      toast.error("Error while logging out");
-    }
-  };
 
   return (
     <header className="border-b bg-background sticky top-0 z-10">
@@ -53,14 +38,11 @@ export default function Header() {
         </div>
         <div className="flex items-center gap-4">
           <div>Search here...</div>
+          <div>
+            <ThemeToggle />
+          </div>
           <div className="flex items-center">
-            <Button variant={"ghost"} asChild>
-              {data?.session && (
-                <Link href={"#"} onClick={logout}>
-                  Logout
-                </Link>
-              )}
-            </Button>
+            {data?.user && <UserMenu user={data?.user} />}
           </div>
         </div>
       </div>
