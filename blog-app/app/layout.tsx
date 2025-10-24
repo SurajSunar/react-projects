@@ -39,7 +39,7 @@ export default function RootLayout({
         >
           <Header />
           <Container>{children}</Container>
-          <Toaster/>
+          <Toaster position="top-right" />
         </ThemeProvider>
       </body>
     </html>

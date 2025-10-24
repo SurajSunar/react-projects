@@ -1,7 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { signOut, useSession } from "@/lib/auth-client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const navItems = [
   {
@@ -15,6 +18,24 @@ const navItems = [
 ];
 
 export default function Header() {
+  const { data } = useSession();
+  const router = useRouter();
+
+  const logout = async () => {
+    try {
+      const { error } = await signOut();
+      router.push("/auth");
+
+      if (error) {
+        toast.error("Logged out successfully");
+      } else {
+        toast.success("Logged out successfully");
+      }
+    } catch (e) {
+      toast.error("Error while logging out");
+    }
+  };
+
   return (
     <header className="border-b bg-background sticky top-0 z-10">
       <div className="flex justify-between items-center container mx-auto p-4">
@@ -34,7 +55,11 @@ export default function Header() {
           <div>Search here...</div>
           <div className="flex items-center">
             <Button variant={"ghost"} asChild>
-              <Link href={"/auth"}>Login</Link>
+              {data?.session && (
+                <Link href={"#"} onClick={logout}>
+                  Logout
+                </Link>
+              )}
             </Button>
           </div>
         </div>
