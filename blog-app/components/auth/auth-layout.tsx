@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import Loginform from "./login-form";
-import Registerform from "./user-menu";
+import Registerform from "./register-form";
 
 const AuthLayout = () => {
   const [tab, setTab] = useState("login");

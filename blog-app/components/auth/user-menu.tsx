@@ -1,7 +1,7 @@
 import React from "react";
 
-const Registerform = () => {
-  return <div>Registerform</div>;
+const UserMenu = () => {
+  return <div>UserMenu</div>;
 };
 
-export default Registerform;
+export default UserMenu;
