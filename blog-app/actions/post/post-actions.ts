@@ -68,3 +68,47 @@ export async function createPost(formData: FormData) {
     };
   }
 }
+
+export async function updatePost(formData: FormData) {
+  try {
+    const session = await auth.api.getSession({
+      headers: await headers(),
+    });
+
+    if (!session || !session?.user) {
+      return {
+        success: false,
+        message: "You must login to edit post",
+      };
+    }
+
+    //get form data
+    const id = formData.get("id") as string;
+    const title = formData.get("title") as string;
+    const description = formData.get("description");
+    const content = formData.get("content");
+    const slug = formData.get("slug");
+
+    const [editPost] = await db
+      .update(post)
+      .set({ title, description, content })
+      .where(eq(post.id, id))
+      .returning();
+
+    revalidatePath("/");
+    revalidatePath("/post/" + slug);
+    revalidatePath("/profile");
+
+    return {
+      success: true,
+      message: "Post edited successfully",
+    };
+  } catch (e) {
+    console.error(e);
+
+    return {
+      success: false,
+      message: "Error in editing post",
+    };
+  }
+}

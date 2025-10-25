@@ -7,9 +7,8 @@ import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { startTransition, useTransition } from "react";
-import { da } from "zod/v4/locales";
-import { createPost } from "@/actions/post/post-actions";
+import { useTransition } from "react";
+import { createPost, updatePost } from "@/actions/post/post-actions";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
@@ -27,7 +26,7 @@ const postSchema = z.object({
 
 type CreatePostValues = z.infer<typeof postSchema>;
 
-const PostForm = () => {
+const PostForm = ({ data }) => {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
@@ -37,25 +36,32 @@ const PostForm = () => {
     formState: { errors },
   } = useForm<CreatePostValues>({
     resolver: zodResolver(postSchema),
-    defaultValues: {
-      title: "",
-      description: "",
-      content: "",
-    },
+    defaultValues: data
+      ? data
+      : {
+          title: "",
+          description: "",
+          content: "",
+        },
   });
 
   const onSubmit = (data: CreatePostValues) => {
     try {
       startTransition(async () => {
         const formData = new FormData();
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        data.id && formData.append("id", data.id);
+
         formData.append("title", data.title);
         formData.append("description", data.description);
         formData.append("content", data.content);
 
-        const res = await createPost(formData);
+        const res = await (data ? updatePost(formData) : createPost(formData));
 
         if (res.success) {
-          toast.success("Post created successfully");
+          toast.success(
+            data.id ? "Post edited successfully" : "Post created successfully"
+          );
           router.refresh();
           router.push("/");
         }

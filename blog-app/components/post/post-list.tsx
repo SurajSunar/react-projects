@@ -1,5 +1,4 @@
 import { getPosts } from "@/lib/db/queries";
-import { post } from "@/lib/db/schema";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import Link from "next/link";
 import dayjs from "dayjs";
