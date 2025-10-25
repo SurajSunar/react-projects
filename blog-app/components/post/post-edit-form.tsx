@@ -3,10 +3,9 @@ import PostForm from "./post-form";
 
 const PostEditForm = async ({ slug }: { slug: string }) => {
   const post = await getPost(slug);
-
   return (
     <div>
-      <PostForm data={post} />
+      <PostForm editablePost={post} />
     </div>
   );
 };
