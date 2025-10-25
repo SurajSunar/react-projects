@@ -11,6 +11,7 @@ import { useTransition } from "react";
 import { createPost, updatePost } from "@/actions/post/post-actions";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { da } from "zod/v4/locales";
 
 const postSchema = z.object({
   title: z.string().min(4, "Must be min of 4 char").max(20, "Max of 20 chars"),
@@ -26,9 +27,11 @@ const postSchema = z.object({
 
 type CreatePostValues = z.infer<typeof postSchema>;
 
-const PostForm = ({ data }) => {
+const PostForm = ({ editablePost }) => {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
+
+  console.log("data===", editablePost);
 
   const {
     register,
@@ -36,8 +39,8 @@ const PostForm = ({ data }) => {
     formState: { errors },
   } = useForm<CreatePostValues>({
     resolver: zodResolver(postSchema),
-    defaultValues: data
-      ? data
+    defaultValues: editablePost
+      ? editablePost
       : {
           title: "",
           description: "",
@@ -50,17 +53,21 @@ const PostForm = ({ data }) => {
       startTransition(async () => {
         const formData = new FormData();
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-        data.id && formData.append("id", data.id);
+        editablePost && formData.append("id", editablePost.id);
 
         formData.append("title", data.title);
         formData.append("description", data.description);
         formData.append("content", data.content);
 
+        console.log("data===1==", data);
+
         const res = await (data ? updatePost(formData) : createPost(formData));
 
         if (res.success) {
           toast.success(
-            data.id ? "Post edited successfully" : "Post created successfully"
+            editablePost.id
+              ? "Post edited successfully"
+              : "Post created successfully"
           );
           router.refresh();
           router.push("/");
@@ -109,7 +116,8 @@ const PostForm = ({ data }) => {
       </div>
       <div>
         <Button type="submit" disabled={isPending} className="w-full">
-          {isPending ? "Creating..." : "Create Post"}
+          {!editablePost && (isPending ? "Creating..." : "Create Post")}
+          {editablePost && (isPending ? "Updating..." : "Update Post")}
         </Button>
       </div>
     </form>
