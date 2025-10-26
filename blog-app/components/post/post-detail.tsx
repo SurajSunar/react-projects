@@ -1,31 +1,38 @@
-import { db } from "@/lib/db";
-import { post } from "@/lib/db/schema";
+import { auth } from "@/lib/auth";
+import { deletePost, getPost } from "@/lib/db/queries";
 import dayjs from "dayjs";
-import { eq } from "drizzle-orm";
-import { Pencil } from "lucide-react";
+import { Pencil, Trash2 } from "lucide-react";
+import { headers } from "next/headers";
 import Link from "next/link";
-
-export async function getPost(slug: string) {
-  const queryPost = await db.query.post.findFirst({
-    where: eq(post.slug, slug),
-    with: {
-      author: true,
-    },
-  });
-
-  return queryPost;
-}
+import { notFound, redirect } from "next/navigation";
+import { toast } from "sonner";
+import PostDeleteBtn from "./post-delete-btn";
 
 const Postdetail = async ({ slug }: { slug: string }) => {
   const post = await getPost(slug);
 
+  if (!post) {
+    notFound();
+  }
+
+  const author = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  const isAuthor = author?.user.id == post.authorId;
+
   return (
     <div className="flex flex-col rounded w-full max-w-md border border-gray-200 p-4">
       <h1 className="text-2xl font-bold border-b border-b-gray-200 pb-2 flex justify-between">
-        {post?.title}
-        <Link href={`/post/edit/${slug}`}>
-          <Pencil />
-        </Link>
+        <span>{post?.title}</span>
+        {isAuthor && (
+          <div className="flex gap-2">
+            <Link href={`/post/edit/${slug}`}>
+              <Pencil />
+            </Link>
+            <PostDeleteBtn id={post.id} />
+          </div>
+        )}
       </h1>
       <div className="py-2 space-y-2">
         <p>{post?.description}</p>
