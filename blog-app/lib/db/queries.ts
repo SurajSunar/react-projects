@@ -1,4 +1,4 @@
-import { desc } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { db } from ".";
 import { post } from "./schema";
 
@@ -20,4 +20,15 @@ export async function getPosts() {
       message: "Error in getting all posts",
     };
   }
+}
+
+export async function getPost(slug: string) {
+  const queryPost = await db.query.post.findFirst({
+    where: eq(post.slug, slug),
+    with: {
+      author: true,
+    },
+  });
+
+  return queryPost;
 }
