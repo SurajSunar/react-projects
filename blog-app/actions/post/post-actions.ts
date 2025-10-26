@@ -112,3 +112,39 @@ export async function updatePost(formData: FormData) {
     };
   }
 }
+
+export async function deletePost(formData: FormData) {
+  try {
+    const session = await auth.api.getSession({
+      headers: await headers(),
+    });
+
+    if (!session || !session?.user) {
+      return {
+        success: false,
+        message: "You must login to edit post",
+      };
+    }
+
+    //get form data
+    const id = formData.get("id") as string;
+
+    const [editPost] = await db.delete(post).where(eq(post.id, id)).returning();
+
+    revalidatePath("/");
+    revalidatePath("/post/" + editPost.slug);
+    revalidatePath("/profile");
+
+    return {
+      success: true,
+      message: "Post deleteed successfully",
+    };
+  } catch (e) {
+    console.error(e);
+
+    return {
+      success: false,
+      message: "Error in deleting post",
+    };
+  }
+}
