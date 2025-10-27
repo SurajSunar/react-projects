@@ -46,13 +46,13 @@ const UserMenu = ({ user }: { user: User }) => {
     <div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Avatar className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center">
+          <Avatar className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center  dark:bg-card dark:text-white dark:border dark:border-gray-700">
             {nameLabel()}
           </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent
           align="end"
-          className="w-56 bg-gray-50 rounded-lg p-2 border border-gray-100"
+          className="w-56 bg-gray-50 rounded-lg p-2 border border-gray-100 dark:bg-card dark:text-white dark:border-gray-700"
         >
           <div className="w-full flex flex-col gap-2 p-2 leading-none">
             <p className="text-base font-semibold">{user?.name}</p>
