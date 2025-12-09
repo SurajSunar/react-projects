@@ -6,12 +6,12 @@ const initialState = {
   cart: null,
 };
 
-export const productSlice = createSlice({
-  name: "product",
+const productSlice = createSlice({
+  name: "productStore",
   initialState,
   reducers: {
     viewProduct: (state, action) => {
-      state.product += action.payload;
+      state.product = action.payload;
     },
   },
 });

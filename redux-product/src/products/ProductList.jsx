@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { viewProduct } from "./productSlice";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     async function fetchData() {
@@ -15,17 +18,20 @@ const ProductList = () => {
     fetchData();
   }, []);
 
-  const viewProduct = (product) => {
+  const checkProduct = (product) => {
+    dispatch(viewProduct(product));
     navigate(`/products/${product.id}`);
   };
-
   return (
     <div className="bg-gray-100 min-h-screen">
       <h1 className="text-2xl text-center py-6">Product List</h1>
       <div className="w-10/12 mx-auto">
         <div className="grid grid-cols-4 gap-6">
           {products.map((product) => (
-            <div className="flex flex-col justify-between gap-2 border rounded-2xl p-2">
+            <div
+              key={product.id}
+              className="flex flex-col justify-between gap-2 border rounded-2xl p-2"
+            >
               <img
                 src={product.image}
                 className="w-full h-[250px] object-cover"
@@ -34,7 +40,7 @@ const ProductList = () => {
               <p className="text-sm">{product.description}</p>
               <p>Nu. {product.price}</p>
               <button
-                onClick={() => viewProduct(product)}
+                onClick={() => checkProduct(product)}
                 className="w-full bg-green-500 p-4 rounded cursor-pointer"
               >
                 View
