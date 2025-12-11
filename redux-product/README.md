@@ -1,11 +1,11 @@
-## About Project
+## About the Project
 
-This project to demonstrate usage of redux in react project.
+This project demonstrates how to integrate **Redux** in a React application with a practical example.
 
-- There is API to render product list and use redux to product details with its storage mechanism.
+The app fetches a list of products from an API and manages product details using Redux for predictable state handling and storage.
 
-Tech stack used:
+## Tech Stack
 
-- Tailwind css
-- React 19
-- Redux
+- **React 19**
+- **Redux**
+- **Tailwind CSS**
