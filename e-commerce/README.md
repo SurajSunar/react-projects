@@ -6,3 +6,4 @@ This project demonstrate how ecommerce project is built. It covers basic feature
 
 - React 19
 - Tailwind css
+- lucide react
