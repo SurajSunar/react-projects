@@ -3,7 +3,9 @@ import React, { useEffect, useState } from "react";
 const Carts = () => {
   const [products, setProducts] = useState();
 
-  useEffect(() => {});
+  useEffect(() => {
+    setProducts([]);
+  }, [products]);
 
   return <div>Carts</div>;
 };
