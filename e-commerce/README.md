@@ -7,6 +7,7 @@ This project demonstrates the implementation of a basic e-commerce application, 
 - Product listing with a user-friendly interface
 - Add-to-cart functionality
 - Order listing and basic order management
+- more modules to be added later
 
 ## Technology Stack
 
