@@ -36,9 +36,12 @@ const AdminLogin = () => {
   });
 
   return (
-    <div className="bg-rose-50 h-screen flex justify-center items-center animate__animated animate__fadeIn animate__slower">
-      <div className="w-1/2  bg-white grid grid-cols-2 h-1/2 rounded-xl animate__animated animate__slideInUp animate__faster">
-        <img src="/login.jpg" className="h-full object-cover rounded-l-xl" />
+    <div className="bg-gray-50 h-screen flex justify-center items-center animate__animated animate__fadeIn animate__slower">
+      <div className="w-3/4 lg:w-1/2  bg-white grid grid-cols-1 lg:grid-cols-2 h-fit rounded-xl animate__animated animate__slideInUp animate__faster">
+        <img
+          src="/login.jpg"
+          className="h-full object-cover rounded-t-xl lg:rounded-l-xl"
+        />
         <div className="p-4">
           <form className="space-y-4" onSubmit={formik.handleSubmit}>
             <h1 className="text-2xl font-semibold">Admin Panel</h1>
