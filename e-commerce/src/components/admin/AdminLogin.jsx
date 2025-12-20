@@ -1,6 +1,8 @@
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
+import { useAuth } from "../../zustand/useAuth";
+import { toast, ToastContainer } from "react-toastify";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
@@ -22,9 +24,7 @@ const LoginSchema = Yup.object().shape({
 });
 
 const AdminLogin = () => {
-  const login = (state) => {
-    console.log(state);
-  };
+  const { login } = useAuth();
 
   const formik = useFormik({
     initialValues: {
