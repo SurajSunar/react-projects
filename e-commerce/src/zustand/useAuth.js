@@ -18,11 +18,13 @@ export const useAuth = create(
                 token: "1234",
               },
             });
+            window.location.href = "/admin/dashboard";
           } else {
             toast.error("Wrong username or password!");
             set({
               user: null,
             });
+            window.location.href = "/login";
           }
         } catch (error) {
           console.log(error);
@@ -32,6 +34,7 @@ export const useAuth = create(
         set({
           user: null,
         });
+        window.location.href = "/login";
       },
     }),
     {
