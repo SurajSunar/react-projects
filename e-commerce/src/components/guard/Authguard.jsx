@@ -10,7 +10,7 @@ const Authguard = () => {
   useEffect(() => {
     const validateUser = async () => {
       try {
-        setIsLogin(true);
+        setIsLogin(!!user?.token);
       } catch (error) {
         console.log(error);
         setIsLogin(false);
