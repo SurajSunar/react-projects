@@ -23,7 +23,7 @@ const LoginSchema = Yup.object().shape({
     .matches(/[^A-Za-z0-9]/, "At lease one special character"),
 });
 
-const AdminLogin = () => {
+const Login = () => {
   const { login } = useAuth();
 
   const formik = useFormik({
@@ -97,4 +97,4 @@ const AdminLogin = () => {
   );
 };
 
-export default AdminLogin;
+export default Login;
