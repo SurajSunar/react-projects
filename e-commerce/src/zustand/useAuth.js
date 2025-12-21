@@ -1,4 +1,3 @@
-import { LogOut } from "lucide-react";
 import { toast } from "react-toastify";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
@@ -18,7 +17,7 @@ export const useAuth = create(
                 token: "1234",
               },
             });
-            window.location.href = "/admin/dashboard";
+            window.location.replace("/admin/dashboard");
           } else {
             toast.error("Wrong username or password!");
             set({
