@@ -1,1 +1,10 @@
-{}
+{
+  "users": [
+    {
+      "id": 1766409120651,
+      "email": "admin@test.com",
+      "password": "$2b$10$0we2bQlFkoe5DzRSql8yGOBxZV14XMjrDqipjQlZ4dLDYEYoUqITS",
+      "role": "admin"
+    }
+  ]
+}
