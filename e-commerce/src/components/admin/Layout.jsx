@@ -80,15 +80,13 @@ const Layout = () => {
 
           <div className="flex-1 space-y-6 mt-6">
             {menus.map((menu) => (
-              <>
-                <Link
-                  className="flex gap-2 text-gray-500 hover:text-gray-900"
-                  key={menu.label}
-                  to={menu.url}
-                >
-                  {menu.icon} {menu.label}
-                </Link>
-              </>
+              <Link
+                className="flex gap-2 text-gray-500 hover:text-gray-900"
+                key={menu.label}
+                to={menu.url}
+              >
+                {menu.icon} {menu.label}
+              </Link>
             ))}
           </div>
           <button className="m-2 w-full rounded bg-linear-to-r from-amber-700 via-amber-400 to-amber-200 text-white p-4">
