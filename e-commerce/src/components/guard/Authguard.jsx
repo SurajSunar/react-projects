@@ -27,9 +27,17 @@ const Authguard = () => {
       </div>
     );
   } else if (isLogin === true) {
-    return <Outlet />;
+    return window.location.pathname === "/login" ? (
+      <Navigate to={"/admin/dashboard"} />
+    ) : (
+      <Outlet />
+    );
   } else {
-    return <Navigate to={"login"} />;
+    return window.location.pathname === "/login" ? (
+      <Outlet />
+    ) : (
+      <Navigate to={"login"} />
+    );
   }
 };
 

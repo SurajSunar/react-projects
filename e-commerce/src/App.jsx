@@ -10,8 +10,8 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/login" Component={Login} />
           <Route Component={Authguard}>
+            <Route path="/login" Component={Login} />
             <Route path="/admin">
               <Route path="dashboard" Component={Dashboard} />
             </Route>
