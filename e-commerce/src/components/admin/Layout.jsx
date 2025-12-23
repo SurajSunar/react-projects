@@ -13,7 +13,7 @@ import {
   User2Icon,
 } from "lucide-react";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 const items = [
   {
@@ -111,7 +111,9 @@ const Layout = () => {
               </Dropdown>
             </div>
           </div>
-          <div className="h-[2000px] p-4">Content here...</div>
+          <div className="h-[2000px] p-4">
+            <Outlet />{" "}
+          </div>
         </div>
       </section>
     </div>
