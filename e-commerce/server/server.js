@@ -25,13 +25,46 @@ const writeDB = (data) =>
 const createToken = (payload) =>
   jwt.sign(payload, SECRET_KEY, { expiresIn: EXPIRES_IN });
 
+const verifyToken = (token) =>
+  jwt.verify(token, SECRET_KEY, { expiresIn: EXPIRES_IN });
+/* ======================
+   VERIFY TOKEN
+====================== */
+server.get("/verify-token", (req, res) => {
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader) return res.status(401).json({ message: "Missing token" });
+
+  const token = authHeader.split(" ")[1];
+
+  try {
+    const decoded = verifyToken(token);
+
+    res.json({
+      valid: true,
+      user: {
+        id: decoded.id,
+        email: decoded.email,
+        role: decoded.role,
+      },
+    });
+  } catch (err) {
+    return res.status(401).json({
+      valid: false,
+      message: "Invalid or expired token",
+    });
+  }
+});
+
 /* ======================
    SIGNUP
 ====================== */
 server.post("/signup", (req, res) => {
-  const { email, password, role = "user" } = req.body;
-  if (!email || !password)
-    return res.status(400).json({ message: "Email and password required" });
+  const { fullname, email, password, role = "user" } = req.body;
+  if (!email || !password || !fullname)
+    return res
+      .status(400)
+      .json({ message: "Full Name, email and password are required" });
 
   const db = readDB();
   const exists = db.users.find((u) => u.email === email);
@@ -41,6 +74,7 @@ server.post("/signup", (req, res) => {
 
   const newUser = {
     id: Date.now(),
+    fullname,
     email,
     password: hashedPassword,
     role,
@@ -56,8 +90,7 @@ server.post("/signup", (req, res) => {
   });
 
   res.status(201).json({
-    accessToken: token,
-    user: { id: newUser.id, email, role },
+    user: { id: newUser.id, email, role, accessToken: token },
   });
 });
 
@@ -78,21 +111,26 @@ server.post("/login", (req, res) => {
 
   const token = createToken({
     id: user.id,
+    fullname: user.fullname,
     email: user.email,
     role: user.role,
   });
 
-  res.json({
-    accessToken: token,
-    user: { id: user.id, email: user.email, role: user.role },
+  res.status(200).json({
+    user: {
+      id: user.id,
+      fullname: user.fullname,
+      email: user.email,
+      role: user.role,
+      accessToken: token,
+    },
   });
 });
-
 /* ======================
    JWT MIDDLEWARE
 ====================== */
 server.use((req, res, next) => {
-  if (["/login", "/signup"].includes(req.path)) return next();
+  if (["/login", "/signup", "/verify-token"].includes(req.path)) return next();
 
   const authHeader = req.headers.authorization;
   if (!authHeader) return res.status(401).json({ message: "Missing token" });
