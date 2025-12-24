@@ -1,10 +1,18 @@
 {
   "users": [
     {
-      "id": 1766409120651,
-      "email": "admin@test.com",
-      "password": "$2b$10$0we2bQlFkoe5DzRSql8yGOBxZV14XMjrDqipjQlZ4dLDYEYoUqITS",
+      "id": 1766573045204,
+      "fullname": "Admin User",
+      "email": "admin@gmail.com",
+      "password": "$2b$10$YGM0tDnQGGpixiNcGxKEZOTZqsr582fMfNNyiLyKzjuWcM9hK2YGW",
       "role": "admin"
+    },
+    {
+      "id": 1766573987885,
+      "fullname": "User one",
+      "email": "user1@gmail.com",
+      "password": "$2b$10$TsHVlDwpUDGMeomz9TqZV.wSjmBIJBZVXL6vq3gNJlDs2KSroWzyS",
+      "role": "user"
     }
   ]
 }

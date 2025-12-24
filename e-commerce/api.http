@@ -1,18 +1,34 @@
-### Signup new user
+### Signup new user admin
 POST http://localhost:3000/signup
 Content-Type: application/json
 
 {
- "email": "admin@test.com",
- "password": "123456",
+ "fullname": "Admin User" ,  
+ "email": "admin@gmail.com",
+ "password": "Admin@1234",
  "role": "admin"
 }
+
+### Signup new user role
+POST http://localhost:3000/signup
+Content-Type: application/json
+
+{
+ "fullname": "User one" ,  
+ "email": "user1@gmail.com",
+ "password": "User1@1234"
+ }
 
 ### Login 
 POST http://localhost:3000/login
 Content-Type: application/json
 
 {
- "email": "admin@test.com",
- "password": "123e456"
+ "email": "user1@gmail.com",
+ "password": "User1@1234"
 }
+
+### Verify token 
+GET http://localhost:3000/verify-token
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTc2NjU3Mzk4Nzg4NSwiZnVsbG5hbWUiOiJVc2VyIG9uZSIsImVtYWlsIjoidXNlcjFAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NjY1ODExMzIsImV4cCI6MTc2NjU4NDczMn0.TBCAoRpe5RQbtRwzdAqeQl5pfJB3rxjsXPPUFslS6VA

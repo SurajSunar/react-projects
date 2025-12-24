@@ -44,7 +44,7 @@ const menus = [
   },
 ];
 
-const Layout = () => {
+const AdminLayout = () => {
   const [slider, setSlider] = useState(true);
   const { logout } = useAuth();
   const navigate = useNavigate();
@@ -129,4 +129,4 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default AdminLayout;

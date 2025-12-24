@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { useAuth } from "../../zustand/useAuth";
 
-const LoginSchema = Yup.object().shape({
+const SignupSchema = Yup.object().shape({
+  fullname: Yup.string()
+    .required("Required")
+    .min(4, "Too Short!")
+    .max(50, "Too Long!"),
   email: Yup.string()
     .email("Invalid email")
     .required("Required")
@@ -23,15 +27,15 @@ const LoginSchema = Yup.object().shape({
 });
 
 const Signup = () => {
-  const { login } = useAuth();
+  const { signup } = useAuth();
 
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    validationSchema: LoginSchema,
-    onSubmit: login,
+    validationSchema: SignupSchema,
+    onSubmit: signup,
   });
 
   return (
@@ -44,6 +48,22 @@ const Signup = () => {
         <div className="p-4">
           <form className="space-y-4" onSubmit={formik.handleSubmit}>
             <h1 className="text-2xl font-semibold">Create an Account Panel</h1>
+            <div className="flex flex-col gap-2">
+              <label>Full name</label>
+              <input
+                name="fullname"
+                type="text"
+                placeholder="John M"
+                className="rounded-lg border border-gray-300 p-2"
+                onChange={formik.handleChange}
+              />
+              {formik.errors.fullname && (
+                <small className="text-xs text-red-500">
+                  {formik.errors.fullname}
+                </small>
+              )}
+            </div>
+
             <div className="flex flex-col gap-2">
               <label>Email</label>
               <input
@@ -78,15 +98,12 @@ const Signup = () => {
               type="submit"
               className="rounded-lg w-full p-2 bg-green-500 text-white cursor-pointer"
             >
-              Login
+              Signup
             </button>
 
             <div className="flex flex-col  text-green-500">
-              <Link to={"#"} className="hover:underline">
-                Forgot Password?
-              </Link>
               <Link to={"/login"} className="hover:underline">
-                Login
+                Back to Login
               </Link>
             </div>
           </form>
