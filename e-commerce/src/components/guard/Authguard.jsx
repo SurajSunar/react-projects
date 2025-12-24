@@ -3,6 +3,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../../zustand/useAuth";
 import { Loader2 } from "lucide-react";
 import axios from "axios";
+axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
 const Authguard = () => {
   const { user } = useAuth();
@@ -13,7 +14,7 @@ const Authguard = () => {
   useEffect(() => {
     const validateUser = async () => {
       try {
-        const { data } = await axios.get("http://localhost:3000/verify-token", {
+        const { data } = await axios.get("/verify-token", {
           headers: {
             Authorization: "Bearer " + user.accessToken,
           },

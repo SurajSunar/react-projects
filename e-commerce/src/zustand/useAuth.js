@@ -3,16 +3,19 @@ import { toast } from "react-toastify";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
+axios.defaults.baseURL = import.meta.env.VITE_API_URL;
+
 export const useAuth = create(
   persist(
-    (set, get) => ({
+    (set) => ({
       user: null,
-      signup: async (state) => {
+      signup: async (payload) => {
         try {
+          const res = await axios.post("/signup", {
+            ...payload,
+          });
           set({
-            user: {
-              token: "1234",
-            },
+            ...res,
           });
           window.location.replace("/admin/dashboard");
         } catch (error) {
@@ -21,7 +24,7 @@ export const useAuth = create(
       },
       login: async (state) => {
         try {
-          const res = await axios.post("http://localhost:3000/login", {
+          const res = await axios.post("/login", {
             ...state,
           });
           if (res.status === 200) {
