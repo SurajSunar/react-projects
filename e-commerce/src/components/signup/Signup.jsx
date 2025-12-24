@@ -2,7 +2,6 @@ import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { useAuth } from "../../zustand/useAuth";
-import { toast, ToastContainer } from "react-toastify";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
@@ -23,7 +22,7 @@ const LoginSchema = Yup.object().shape({
     .matches(/[^A-Za-z0-9]/, "At lease one special character"),
 });
 
-const Login = () => {
+const Signup = () => {
   const { login } = useAuth();
 
   const formik = useFormik({
@@ -44,7 +43,7 @@ const Login = () => {
         />
         <div className="p-4">
           <form className="space-y-4" onSubmit={formik.handleSubmit}>
-            <h1 className="text-2xl font-semibold">SignIn Panel</h1>
+            <h1 className="text-2xl font-semibold">Create an Account Panel</h1>
             <div className="flex flex-col gap-2">
               <label>Email</label>
               <input
@@ -86,8 +85,8 @@ const Login = () => {
               <Link to={"#"} className="hover:underline">
                 Forgot Password?
               </Link>
-              <Link to={"/signup"} className="hover:underline">
-                Create Account
+              <Link to={"/login"} className="hover:underline">
+                Login
               </Link>
             </div>
           </form>
@@ -97,4 +96,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

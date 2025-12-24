@@ -10,6 +10,7 @@ import Order from "./components/admin/Order";
 import Product from "./components/admin/Product";
 import Settings from "./components/admin/Settings";
 import NotFound from "./404";
+import Signup from "./components/signup/Signup";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
               <Route path="Settings" Component={Settings} />
             </Route>
           </Route>
+          <Route path="/signup" Component={Signup} />
           <Route path="*" Component={NotFound} />
         </Routes>
       </BrowserRouter>

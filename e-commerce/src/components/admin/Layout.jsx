@@ -13,25 +13,8 @@ import {
   User2Icon,
 } from "lucide-react";
 import React, { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
-
-const items = [
-  {
-    label: "Dashboard",
-    key: "dashboard",
-    icon: <LayoutDashboardIcon className="w-4 h-4" />,
-  },
-  {
-    label: "Settings",
-    key: "settings",
-    icon: <Settings2Icon className="w-4 h-4" />,
-  },
-  {
-    label: "Logout",
-    key: "logout",
-    icon: <LogOutIcon className="w-4 h-4" />,
-  },
-];
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import { useAuth } from "../../zustand/useAuth";
 
 const menus = [
   {
@@ -63,6 +46,29 @@ const menus = [
 
 const Layout = () => {
   const [slider, setSlider] = useState(true);
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const items = [
+    {
+      label: "Dashboard",
+      key: "dashboard",
+      icon: <LayoutDashboardIcon className="w-4 h-4" />,
+      onClick: () => navigate("/admin/dashboard"),
+    },
+    {
+      label: "Settings",
+      key: "settings",
+      icon: <Settings2Icon className="w-4 h-4" />,
+      onClick: () => navigate("/admin/settings"),
+    },
+    {
+      label: "Logout",
+      key: "logout",
+      icon: <LogOutIcon className="w-4 h-4" />,
+      onClick: () => logout(),
+    },
+  ];
 
   return (
     <div className="bg-rose-50 min-h-screen">
@@ -89,7 +95,10 @@ const Layout = () => {
               </Link>
             ))}
           </div>
-          <button className="m-2 w-full flex gap-2 justify-center rounded bg-linear-to-r from-amber-700 via-amber-400 to-amber-200 text-white p-4">
+          <button
+            onClick={logout}
+            className="m-2 w-full flex gap-2 justify-center rounded bg-linear-to-r from-amber-700 via-amber-400 to-amber-200 text-white p-4"
+          >
             <LogOutIcon className="w-6 h-6" /> {slider && "Logout"}
           </button>
         </div>
