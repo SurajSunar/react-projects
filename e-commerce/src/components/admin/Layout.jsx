@@ -89,8 +89,8 @@ const Layout = () => {
               </Link>
             ))}
           </div>
-          <button className="m-2 w-full rounded bg-linear-to-r from-amber-700 via-amber-400 to-amber-200 text-white p-4">
-            Logout
+          <button className="m-2 w-full flex gap-2 justify-center rounded bg-linear-to-r from-amber-700 via-amber-400 to-amber-200 text-white p-4">
+            <LogOutIcon className="w-6 h-6" /> {slider && "Logout"}
           </button>
         </div>
       </aside>
@@ -111,8 +111,8 @@ const Layout = () => {
               </Dropdown>
             </div>
           </div>
-          <div className="h-[2000px] p-4">
-            <Outlet />{" "}
+          <div className="p-4">
+            <Outlet />
           </div>
         </div>
       </section>
