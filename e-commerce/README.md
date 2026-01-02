@@ -8,6 +8,7 @@ This project demonstrates the implementation of a basic e-commerce application, 
 - Add-to-cart functionality
 - Order listing and basic order management
 - more modules to be added later
+- list customers
 
 ## Technology Stack
 
