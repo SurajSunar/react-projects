@@ -146,6 +146,38 @@ server.use((req, res, next) => {
 });
 
 /* ======================
+   USERS API
+====================== */
+server.get("/users", (req, res) => {
+  if (req.user.role !== "admin")
+    return res.status(403).json({ message: "Forbidden" });
+
+  const db = readDB();
+  res.json(db.users.map(({ password, ...u }) => u));
+});
+
+/* ======================
+   PRODUCTS API
+====================== */
+server.get("/products", (req, res) => {
+  const db = readDB();
+  res.json(db.products);
+});
+
+server.post("/products", (req, res) => {
+  if (req.user.role !== "admin")
+    return res.status(403).json({ message: "Admin only" });
+
+  const db = readDB();
+  const product = { id: Date.now(), ...req.body };
+
+  db.products.push(product);
+  writeDB(db);
+
+  res.status(201).json(product);
+});
+
+/* ======================
    PROTECTED ROUTES
 ====================== */
 server.use(router);

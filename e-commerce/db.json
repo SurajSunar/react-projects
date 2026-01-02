@@ -14,5 +14,131 @@
       "password": "$2b$10$TsHVlDwpUDGMeomz9TqZV.wSjmBIJBZVXL6vq3gNJlDs2KSroWzyS",
       "role": "user"
     }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Laptop Pro 14",
+      "price": 1400,
+      "category": "Electronics",
+      "stock": 10,
+      "tags": ["laptop", "professional", "high-performance"]
+    },
+    {
+      "id": 2,
+      "name": "Smartphone X",
+      "price": 900,
+      "category": "Electronics",
+      "stock": 25,
+      "tags": ["smartphone", "5g", "mobile"]
+    },
+    {
+      "id": 3,
+      "name": "Wireless Headphones",
+      "price": 199,
+      "category": "Accessories",
+      "stock": 40,
+      "tags": ["audio", "wireless", "bluetooth"]
+    },
+    {
+      "id": 4,
+      "name": "Mechanical Keyboard",
+      "price": 149,
+      "category": "Accessories",
+      "stock": 30,
+      "tags": ["keyboard", "mechanical", "gaming"]
+    },
+    {
+      "id": 5,
+      "name": "Gaming Mouse",
+      "price": 79,
+      "category": "Accessories",
+      "stock": 50,
+      "tags": ["mouse", "gaming", "rgb"]
+    },
+    {
+      "id": 6,
+      "name": "27-inch Monitor",
+      "price": 399,
+      "category": "Electronics",
+      "stock": 15,
+      "tags": ["monitor", "display", "4k"]
+    },
+    {
+      "id": 7,
+      "name": "USB-C Hub",
+      "price": 59,
+      "category": "Accessories",
+      "stock": 60,
+      "tags": ["usb-c", "hub", "accessories"]
+    },
+    {
+      "id": 8,
+      "name": "External SSD 1TB",
+      "price": 179,
+      "category": "Storage",
+      "stock": 20,
+      "tags": ["ssd", "storage", "portable"]
+    },
+    {
+      "id": 9,
+      "name": "Webcam HD",
+      "price": 99,
+      "category": "Accessories",
+      "stock": 35,
+      "tags": ["webcam", "video", "streaming"]
+    },
+    {
+      "id": 10,
+      "name": "Bluetooth Speaker",
+      "price": 129,
+      "category": "Audio",
+      "stock": 45,
+      "tags": ["speaker", "bluetooth", "portable"]
+    }
+  ],
+  "orders": [
+    {
+      "id": 1001,
+      "userId": 1,
+      "items": [
+        { "productId": 1, "name": "Laptop Pro 14", "price": 1400, "qty": 1 },
+        {
+          "productId": 3,
+          "name": "Wireless Headphones",
+          "price": 199,
+          "qty": 1
+        }
+      ],
+      "total": 1599,
+      "status": "placed",
+      "createdAt": "2025-01-10T10:15:00Z"
+    },
+    {
+      "id": 1002,
+      "userId": 1,
+      "items": [
+        { "productId": 2, "name": "Smartphone X", "price": 900, "qty": 1 }
+      ],
+      "total": 900,
+      "status": "shipped",
+      "createdAt": "2025-01-12T08:45:00Z"
+    },
+    {
+      "id": 1003,
+      "userId": 2,
+      "items": [
+        {
+          "productId": 4,
+          "name": "Mechanical Keyboard",
+          "price": 149,
+          "qty": 1
+        },
+        { "productId": 5, "name": "Gaming Mouse", "price": 79, "qty": 1 }
+      ],
+      "total": 228,
+      "status": "delivered",
+      "createdAt": "2025-01-15T14:20:00Z"
+    }
   ]
 }
