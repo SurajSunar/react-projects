@@ -39,8 +39,10 @@ const Customer = () => {
 
       setCustomers(customers);
     };
+
+    console.log(customers);
     fetchCustomers();
-  }, [user]);
+  }, []);
 
   return (
     <div>
