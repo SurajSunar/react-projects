@@ -37,16 +37,19 @@ const Customer = () => {
         },
       });
 
-      setCustomers(customers);
+      setCustomers(customers.data);
+      console.log(customers.data);
     };
 
-    console.log(customers);
     fetchCustomers();
   }, []);
 
   return (
-    <div>
-      <Table dataSource={customers} columns={columns} />;
+    <div className="space-y-2">
+      <div className="w-full bg-white p-2 rounded">
+        <h1 className="text-xl text-gray-500">Customer List</h1>
+      </div>
+      <Table dataSource={customers} columns={columns} />
     </div>
   );
 };
