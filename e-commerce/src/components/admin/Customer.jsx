@@ -42,7 +42,7 @@ const Customer = () => {
     };
 
     fetchCustomers();
-  }, []);
+  }, [user]);
 
   return (
     <div className="space-y-2">
