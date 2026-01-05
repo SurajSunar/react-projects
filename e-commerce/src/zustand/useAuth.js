@@ -7,7 +7,7 @@ axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
 export const useAuth = create(
   persist(
-    (set) => ({
+    (set, get) => ({
       user: null,
       signup: async (payload) => {
         try {
@@ -24,9 +24,18 @@ export const useAuth = create(
       },
       updateUser: async (payload) => {
         try {
-          const res = await axios.put("/users" / +payload.id, {
-            ...payload,
-          });
+          const user = get().user;
+          const res = await axios.put(
+            "/users/" + payload.id,
+            {
+              ...payload,
+            },
+            {
+              headers: {
+                Authorization: "Bearer " + user.accessToken,
+              },
+            }
+          );
           set({
             ...res,
           });

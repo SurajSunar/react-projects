@@ -2,8 +2,7 @@ import axios from "axios";
 import { Axis3D, Edit2, Loader2, Trash2 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../zustand/useAuth";
-import { Button, Modal, Table } from "antd";
-import e from "cors";
+import { Table } from "antd";
 import EditUser from "./EditCustomer";
 
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
@@ -14,7 +13,7 @@ const Customer = () => {
   const [customers, setCustomers] = useState();
   const [loading, setLoading] = useState(false);
   const [selectedCustomer, setSelectedCustomer] = useState();
-  const [modal2Open, setModal2Open] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const columns = [
     {
@@ -51,7 +50,7 @@ const Customer = () => {
 
   const editCustomer = (customer) => {
     setSelectedCustomer(customer);
-    setModal2Open(true);
+    setModalOpen(true);
   };
 
   const fetchCustomers = async () => {
@@ -90,18 +89,12 @@ const Customer = () => {
       </div>
       <Table dataSource={customers} columns={columns} />
 
-      <Modal
-        title="Edit Customer"
-        open={modal2Open}
-        onCancel={() => setModal2Open(false)}
-        footer={[
-          <Button key="submit" type="primary" onClick={() => saveChanges()}>
-            Submit
-          </Button>,
-        ]}
-      >
-        <EditUser user={selectedCustomer} saveChanges={saveChanges} />
-      </Modal>
+      <EditUser
+        user={selectedCustomer}
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
+        fetchCustomers={fetchCustomers}
+      />
     </div>
   );
 };
