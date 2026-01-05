@@ -31,25 +31,25 @@ const Customer = () => {
     },
   ];
 
+  const fetchCustomers = async () => {
+    try {
+      setLoading(true);
+      const customers = await axios.get("/users", {
+        headers: {
+          Authorization: "Bearer " + user.accessToken,
+        },
+      });
+
+      setCustomers(customers.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchCustomers = async () => {
-      try {
-        setLoading(true);
-        const customers = await axios.get("/users", {
-          headers: {
-            Authorization: "Bearer " + user.accessToken,
-          },
-        });
-
-        setCustomers(customers.data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCustomers();
+    !!user && fetchCustomers();
   }, [user]);
 
   if (loading) {
