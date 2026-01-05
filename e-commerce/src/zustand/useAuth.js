@@ -22,6 +22,19 @@ export const useAuth = create(
           console.log(error);
         }
       },
+      updateUser: async (payload) => {
+        try {
+          const res = await axios.put("/users" / +payload.id, {
+            ...payload,
+          });
+          set({
+            ...res,
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      },
+
       login: async (state) => {
         try {
           const res = await axios.post("/login", {
