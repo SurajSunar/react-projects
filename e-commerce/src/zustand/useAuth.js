@@ -44,6 +44,21 @@ export const useAuth = create(
         }
       },
 
+      deleteUser: async (id) => {
+        try {
+          const user = get().user;
+          const res = await axios.delete("/users/" + id, {
+            headers: {
+              Authorization: "Bearer " + user.accessToken,
+            },
+          });
+          set({
+            ...res,
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      },
       login: async (state) => {
         try {
           const res = await axios.post("/login", {

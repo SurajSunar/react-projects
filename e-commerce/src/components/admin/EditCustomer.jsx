@@ -22,8 +22,6 @@ const EditUserSchema = Yup.object().shape({
       "is-role",
       () => `Only Admin or User role is allowed`,
       (value) => {
-        console.log(value);
-
         return ["admin", "user"].includes(value);
       }
     ),

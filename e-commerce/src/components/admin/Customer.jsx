@@ -2,13 +2,13 @@ import axios from "axios";
 import { Axis3D, Edit2, Loader2, Trash2 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../zustand/useAuth";
-import { Table } from "antd";
+import { Popconfirm, Table } from "antd";
 import EditUser from "./EditCustomer";
 
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
 const Customer = () => {
-  const { user } = useAuth();
+  const { user, deleteUser } = useAuth();
 
   const [customers, setCustomers] = useState();
   const [loading, setLoading] = useState(false);
@@ -41,12 +41,31 @@ const Customer = () => {
               className="w-4 cursor-pointer"
               onClick={() => editCustomer(item)}
             />
-            <Trash2 className="w-4 text-red-500 cursor-pointer" />
+
+            <Popconfirm
+              title="Delete the customer"
+              description="Are you sure to delete this customer?"
+              onConfirm={() => confirm(item.id)}
+              onCancel={cancel}
+              okText="Yes"
+              cancelText="No"
+            >
+              <Trash2 className="w-4 text-red-500 cursor-pointer" />
+            </Popconfirm>
           </div>
         );
       },
     },
   ];
+
+  const confirm = async (id) => {
+    await deleteUser(id);
+    await fetchCustomers();
+  };
+
+  const cancel = (e) => {
+    console.log(e);
+  };
 
   const editCustomer = (customer) => {
     setSelectedCustomer(customer);

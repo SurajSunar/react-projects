@@ -5,12 +5,6 @@
       "fullname": "Admin User1",
       "email": "admin@gmail.com",
       "role": "admin"
-    },
-    {
-      "id": 1766573987885,
-      "fullname": "User one",
-      "email": "user1@gmail.com",
-      "role": "admin"
     }
   ],
   "products": [
@@ -135,63 +129,5 @@
       ]
     }
   ],
-  "orders": [
-    {
-      "id": 1001,
-      "userId": 1,
-      "items": [
-        {
-          "productId": 1,
-          "name": "Laptop Pro 14",
-          "price": 1400,
-          "qty": 1
-        },
-        {
-          "productId": 3,
-          "name": "Wireless Headphones",
-          "price": 199,
-          "qty": 1
-        }
-      ],
-      "total": 1599,
-      "status": "placed",
-      "createdAt": "2025-01-10T10:15:00Z"
-    },
-    {
-      "id": 1002,
-      "userId": 1,
-      "items": [
-        {
-          "productId": 2,
-          "name": "Smartphone X",
-          "price": 900,
-          "qty": 1
-        }
-      ],
-      "total": 900,
-      "status": "shipped",
-      "createdAt": "2025-01-12T08:45:00Z"
-    },
-    {
-      "id": 1003,
-      "userId": 2,
-      "items": [
-        {
-          "productId": 4,
-          "name": "Mechanical Keyboard",
-          "price": 149,
-          "qty": 1
-        },
-        {
-          "productId": 5,
-          "name": "Gaming Mouse",
-          "price": 79,
-          "qty": 1
-        }
-      ],
-      "total": 228,
-      "status": "delivered",
-      "createdAt": "2025-01-15T14:20:00Z"
-    }
-  ]
+  "orders": []
 }
