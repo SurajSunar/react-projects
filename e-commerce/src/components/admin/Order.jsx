@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 
 const Order = () => {
-  const [orders, setOrders] = useState();
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     const loadOrders = async () => {
@@ -12,7 +12,16 @@ const Order = () => {
     loadOrders();
   }, []);
 
-  return <div>{orders}</div>;
+  return (
+    <div>
+      {orders &&
+        orders.map((order, index) => (
+          <>
+            {index + 1}. {order.products} - Nu.{order.cost}
+          </>
+        ))}
+    </div>
+  );
 };
 
 export default Order;
