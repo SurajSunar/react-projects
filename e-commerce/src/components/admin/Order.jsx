@@ -12,6 +12,8 @@ const Order = () => {
     loadOrders();
   }, []);
 
+  if (!orders.length) return <>Loading...</>;
+
   return (
     <div>
       {orders &&
