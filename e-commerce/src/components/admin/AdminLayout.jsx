@@ -13,7 +13,7 @@ import {
   User2Icon,
 } from "lucide-react";
 import React, { useState } from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../zustand/useAuth";
 
 const menus = [
@@ -48,6 +48,8 @@ const AdminLayout = () => {
   const [slider, setSlider] = useState(true);
   const { logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const routePath = location.pathname;
 
   const items = [
     {
@@ -84,10 +86,12 @@ const AdminLayout = () => {
             {slider && "ShopMart"}
           </div>
 
-          <div className="flex-1 mt-6">
+          <div className="flex-1 mt-6 space-y-1">
             {menus.map((menu) => (
               <Link
-                className="flex gap-2 text-gray-500 rounded hover:text-gray-900 hover:bg-gray-100 py-3 px-4"
+                className={`${
+                  routePath === menu.url && "bg-gray-200 text-gray-900"
+                } flex gap-2 text-gray-500 rounded hover:text-gray-900 hover:bg-gray-100 py-3 px-4`}
                 key={menu.label}
                 to={menu.url}
               >
@@ -120,7 +124,15 @@ const AdminLayout = () => {
               </Dropdown>
             </div>
           </div>
-          <div className="p-4">
+          <div className="p-4 space-y-4">
+            <div className="w-full bg-white p-2 rounded flex gap-x-2 items-center">
+              <div className="rounded-full bg-rose-50 p-2">
+                {menus.find((menu) => menu.url === routePath).icon}
+              </div>
+              <h1 className="text-xl text-gray-500 capitalize">
+                {routePath.split("/").pop()}
+              </h1>
+            </div>
             <Outlet />
           </div>
         </div>

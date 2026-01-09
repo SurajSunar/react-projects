@@ -4,7 +4,15 @@
       "id": 1766573045204,
       "fullname": "Admin User1",
       "email": "admin@gmail.com",
+      "password": "$2b$10$RSKzvYANc5ITBziK6IR6cOMaoyzMdgtncm6z3hsXeI7dJoLtAUGR.",
       "role": "admin"
+    },
+    {
+      "id": 1767965075018,
+      "fullname": "Admin User1",
+      "email": "admin1@gmail.com",
+      "password": "$2b$10$RSKzvYANc5ITBziK6IR6cOMaoyzMdgtncm6z3hsXeI7dJoLtAUGR.",
+      "role": "user"
     }
   ],
   "products": [
@@ -14,11 +22,7 @@
       "price": 1400,
       "category": "Electronics",
       "stock": 10,
-      "tags": [
-        "laptop",
-        "professional",
-        "high-performance"
-      ]
+      "tags": ["laptop", "professional", "high-performance"]
     },
     {
       "id": 2,
@@ -26,11 +30,7 @@
       "price": 900,
       "category": "Electronics",
       "stock": 25,
-      "tags": [
-        "smartphone",
-        "5g",
-        "mobile"
-      ]
+      "tags": ["smartphone", "5g", "mobile"]
     },
     {
       "id": 3,
@@ -38,11 +38,7 @@
       "price": 199,
       "category": "Accessories",
       "stock": 40,
-      "tags": [
-        "audio",
-        "wireless",
-        "bluetooth"
-      ]
+      "tags": ["audio", "wireless", "bluetooth"]
     },
     {
       "id": 4,
@@ -50,11 +46,7 @@
       "price": 149,
       "category": "Accessories",
       "stock": 30,
-      "tags": [
-        "keyboard",
-        "mechanical",
-        "gaming"
-      ]
+      "tags": ["keyboard", "mechanical", "gaming"]
     },
     {
       "id": 5,
@@ -62,11 +54,7 @@
       "price": 79,
       "category": "Accessories",
       "stock": 50,
-      "tags": [
-        "mouse",
-        "gaming",
-        "rgb"
-      ]
+      "tags": ["mouse", "gaming", "rgb"]
     },
     {
       "id": 6,
@@ -74,11 +62,7 @@
       "price": 399,
       "category": "Electronics",
       "stock": 15,
-      "tags": [
-        "monitor",
-        "display",
-        "4k"
-      ]
+      "tags": ["monitor", "display", "4k"]
     },
     {
       "id": 7,
@@ -86,11 +70,7 @@
       "price": 59,
       "category": "Accessories",
       "stock": 60,
-      "tags": [
-        "usb-c",
-        "hub",
-        "accessories"
-      ]
+      "tags": ["usb-c", "hub", "accessories"]
     },
     {
       "id": 8,
@@ -98,11 +78,7 @@
       "price": 179,
       "category": "Storage",
       "stock": 20,
-      "tags": [
-        "ssd",
-        "storage",
-        "portable"
-      ]
+      "tags": ["ssd", "storage", "portable"]
     },
     {
       "id": 9,
@@ -110,11 +86,7 @@
       "price": 99,
       "category": "Accessories",
       "stock": 35,
-      "tags": [
-        "webcam",
-        "video",
-        "streaming"
-      ]
+      "tags": ["webcam", "video", "streaming"]
     },
     {
       "id": 10,
@@ -122,11 +94,7 @@
       "price": 129,
       "category": "Audio",
       "stock": 45,
-      "tags": [
-        "speaker",
-        "bluetooth",
-        "portable"
-      ]
+      "tags": ["speaker", "bluetooth", "portable"]
     }
   ],
   "orders": []
