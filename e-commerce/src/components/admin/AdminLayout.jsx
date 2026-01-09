@@ -90,8 +90,8 @@ const AdminLayout = () => {
             {menus.map((menu) => (
               <Link
                 className={`${
-                  routePath === menu.url && "bg-gray-200 text-gray-900"
-                } flex gap-2 text-gray-500 rounded hover:text-gray-900 hover:bg-gray-100 py-3 px-4`}
+                  routePath === menu.url && "bg-rose-50 text-gray-900"
+                } flex gap-2 text-gray-500 rounded hover:text-gray-900 hover:bg-rose-50 py-3 px-4`}
                 key={menu.label}
                 to={menu.url}
               >
