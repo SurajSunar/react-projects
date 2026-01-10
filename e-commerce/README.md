@@ -9,6 +9,7 @@ This project demonstrates the implementation of a basic e-commerce application, 
 - Order listing and basic order management
 - more modules to be added later
 - list customers
+- profije edit
 
 ## Technology Stack
 
