@@ -5,8 +5,12 @@ import React from "react";
 const Product = () => {
   return (
     <div className="grid grid-cols-4 gap-4">
-      <div className="col-span-4 ">
-        <Button className="float-right font-bold!">Add Product</Button>
+      <div className="col-span-4">
+        <div class="border-run border-2 rounded-lg w-80 p-[2px]">
+          <div class="bg-white rounded-lg p-6 text-gray-800">
+            Running Gradient Border
+          </div>
+        </div>
       </div>
 
       {Array(12)

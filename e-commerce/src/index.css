@@ -4,3 +4,51 @@
   display: flex;
   justify-content: center;
 }
+
+/* moving gradient border */
+@layer components {
+  .border-run {
+    position: relative;
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+
+  .border-run::before {
+    content: "";
+    position: absolute;
+    inset: -10%;
+    background: linear-gradient(
+      90deg,
+      #22c55e,
+      #06b6d4,
+      #3b82f6,
+      #a855f7,
+      #22c55e
+    );
+    animation: border-move 5s linear infinite;
+    z-index: 0;
+  }
+
+  .border-run > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+@keyframes border-move {
+  0% {
+    transform: translateX(0%) translateY(-100%);
+  }
+  25% {
+    transform: translateX(0%) translateY(100%);
+  }
+  50% {
+    transform: translateX(100%) translateY(0%);
+  }
+  75% {
+    transform: translateX(0%) translateY(0%);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-100%);
+  }
+}
