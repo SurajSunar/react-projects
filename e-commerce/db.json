@@ -22,8 +22,11 @@
       "price": 1400,
       "category": "Electronics",
       "stock": 10,
-      "tags": ["laptop", "professional", "high-performance"],
-      "image_url": "https://i.dell.com/media/global-site-design/product_images/dell_client_products/laptops/latitude_laptops/14_9440/media_gallery/laptop-latitude-14-9440-t-gray-gallery-1.psd?fmt=pjpg&pscan=auto&scl=1&wid=3503&hei=2242&qlt=100,1&resMode=sharp2&size=3503,2242&chrss=full"
+      "tags": [
+        "laptop",
+        "professional",
+        "high-performance"
+      ]
     },
     {
       "id": 2,
@@ -31,8 +34,11 @@
       "price": 900,
       "category": "Electronics",
       "stock": 25,
-      "tags": ["smartphone", "5g", "mobile"],
-      "image_url": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&q=80&w=1000"
+      "tags": [
+        "smartphone",
+        "5g",
+        "mobile"
+      ]
     },
     {
       "id": 3,
@@ -40,8 +46,11 @@
       "price": 199,
       "category": "Accessories",
       "stock": 40,
-      "tags": ["audio", "wireless", "bluetooth"],
-      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=1000"
+      "tags": [
+        "audio",
+        "wireless",
+        "bluetooth"
+      ]
     },
     {
       "id": 4,
@@ -49,8 +58,11 @@
       "price": 149,
       "category": "Accessories",
       "stock": 30,
-      "tags": ["keyboard", "mechanical", "gaming"],
-      "image_url": "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&q=80&w=1000"
+      "tags": [
+        "keyboard",
+        "mechanical",
+        "gaming"
+      ]
     },
     {
       "id": 5,
@@ -58,8 +70,11 @@
       "price": 79,
       "category": "Accessories",
       "stock": 50,
-      "tags": ["mouse", "gaming", "rgb"],
-      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&q=80&w=1000"
+      "tags": [
+        "mouse",
+        "gaming",
+        "rgb"
+      ]
     },
     {
       "id": 6,
@@ -67,8 +82,11 @@
       "price": 399,
       "category": "Electronics",
       "stock": 15,
-      "tags": ["monitor", "display", "4k"],
-      "image_url": "https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?auto=format&fit=crop&q=80&w=1000"
+      "tags": [
+        "monitor",
+        "display",
+        "4k"
+      ]
     },
     {
       "id": 7,
@@ -76,8 +94,11 @@
       "price": 59,
       "category": "Accessories",
       "stock": 60,
-      "tags": ["usb-c", "hub", "accessories"],
-      "image_url": "https://m.media-amazon.com/images/I/61+9E-pAnfL._AC_SL1500_.jpg"
+      "tags": [
+        "usb-c",
+        "hub",
+        "accessories"
+      ]
     },
     {
       "id": 8,
@@ -85,8 +106,11 @@
       "price": 179,
       "category": "Storage",
       "stock": 20,
-      "tags": ["ssd", "storage", "portable"],
-      "image_url": "https://m.media-amazon.com/images/I/71pOn6t6XBL._AC_SL1500_.jpg"
+      "tags": [
+        "ssd",
+        "storage",
+        "portable"
+      ]
     },
     {
       "id": 9,
@@ -94,8 +118,11 @@
       "price": 99,
       "category": "Accessories",
       "stock": 35,
-      "tags": ["webcam", "video", "streaming"],
-      "image_url": "https://resource.logitech.com/w_800,c_lpad,ar_4:3,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/logitech/en/products/webcams/c920s/gallery/c920s-gallery-1.png?v=1"
+      "tags": [
+        "webcam",
+        "video",
+        "streaming"
+      ]
     },
     {
       "id": 10,
@@ -103,8 +130,11 @@
       "price": 129,
       "category": "Audio",
       "stock": 45,
-      "tags": ["speaker", "bluetooth", "portable"],
-      "image_url": "https://images.unsplash.com/photo-1608156639585-3420ad0d5b9b?auto=format&fit=crop&q=80&w=1000"
+      "tags": [
+        "speaker",
+        "bluetooth",
+        "portable"
+      ]
     }
   ],
   "orders": []

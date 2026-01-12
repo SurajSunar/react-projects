@@ -3,6 +3,7 @@ import axios from "axios";
 import { Car, Edit2, Trash2 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../zustand/useAuth";
+import AddProduct from "./AddProduct";
 
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
@@ -10,6 +11,7 @@ const Product = () => {
   const { user } = useAuth();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState([]);
+  const [modalOpen, setModalOpen] = useState("");
 
   const fetchProducts = async () => {
     try {
@@ -35,7 +37,9 @@ const Product = () => {
     <div className="grid grid-cols-4 gap-4">
       <div className="col-span-4">
         <div class="hover:border-run p-1 float-right border border-gray-200 rounded-lg w-fit bg-white">
-          <Button className="border-0!">Add Product</Button>
+          <Button className="border-0!" onClick={() => setModalOpen(true)}>
+            Add Product
+          </Button>
         </div>
       </div>
 
@@ -71,6 +75,8 @@ const Product = () => {
           </Card>
         );
       })}
+
+      <AddProduct modalOpen={modalOpen} setModalOpen={setModalOpen} />
     </div>
   );
 };
