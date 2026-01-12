@@ -7,7 +7,7 @@ import { useAuth } from "../../zustand/useAuth";
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
 const Product = () => {
-  const [user] = useAuth();
+  const { user } = useAuth();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState([]);
 
@@ -29,47 +29,48 @@ const Product = () => {
 
   useEffect(() => {
     fetchProducts();
-  });
+  }, []);
 
   return (
     <div className="grid grid-cols-4 gap-4">
       <div className="col-span-4">
-        <div class="border-run border-2 rounded-lg w-80 p-[2px]">
-          <div class="bg-white rounded-lg p-6 text-gray-800">
-            Running Gradient Border
-          </div>
+        <div class="hover:border-run p-1 float-right border border-gray-200 rounded-lg w-fit bg-white">
+          <Button className="border-0!">Add Product</Button>
         </div>
       </div>
 
-      {Array(12)
-        .fill(0)
-        .map((_, index) => {
-          return (
-            <Card
-              className="rounded!"
-              cover={
-                <Image
-                  className="h-50! object-cover! rounded-t!"
-                  src="https://picsum.photos/200/300"
-                ></Image>
-              }
-              actions={[
-                <Edit2 className="w-4 text-rose-400" />,
-                <Trash2 className="w-4 text-rose-400" />,
-              ]}
-            >
-              <Card.Meta
-                title={"Hard Drive 5"}
-                description={
-                  <div className="space-y-2!">
-                    <p>$1200.00</p>
-                    <Tag className="bg-gray-200!">wewewe</Tag>
+      {products.map((product, index) => {
+        return (
+          <Card
+            className="rounded!"
+            cover={
+              <Image
+                className="h-50! object-cover! rounded-t!"
+                src={product.image_url}
+                fallback="https://placehold.net/400x400.png"
+              ></Image>
+            }
+            actions={[
+              <Edit2 className="w-4 text-rose-400" />,
+              <Trash2 className="w-4 text-rose-400" />,
+            ]}
+          >
+            <Card.Meta
+              title={product.name}
+              description={
+                <div className="space-y-2!">
+                  <p>${product.price}</p>
+                  <div className="">
+                    {product.tags.map((tag) => (
+                      <Tag className="bg-gray-200! mr-2!">{tag}</Tag>
+                    ))}
                   </div>
-                }
-              ></Card.Meta>
-            </Card>
-          );
-        })}
+                </div>
+              }
+            ></Card.Meta>
+          </Card>
+        );
+      })}
     </div>
   );
 };
