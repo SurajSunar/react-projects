@@ -1,8 +1,36 @@
 import { Button, Card, Image, Tag } from "antd";
+import axios from "axios";
 import { Car, Edit2, Trash2 } from "lucide-react";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useAuth } from "../../zustand/useAuth";
+
+axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
 const Product = () => {
+  const [user] = useAuth();
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState([]);
+
+  const fetchProducts = async () => {
+    try {
+      const customers = await axios.get("/products", {
+        headers: {
+          Authorization: "Bearer " + user.accessToken,
+        },
+      });
+
+      setProducts(customers.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  });
+
   return (
     <div className="grid grid-cols-4 gap-4">
       <div className="col-span-4">
