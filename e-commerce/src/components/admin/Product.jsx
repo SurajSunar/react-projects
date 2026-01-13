@@ -1,9 +1,11 @@
-import { Button, Card, Image, Tag } from "antd";
+import { Button, Card, Image, Popconfirm, Tag } from "antd";
 import axios from "axios";
 import { Car, Edit2, Trash2 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../zustand/useAuth";
 import AddProduct from "./AddProduct";
+import { useProduct } from "../../zustand/useProduct";
+import { toast } from "react-toastify";
 
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
@@ -13,6 +15,7 @@ const Product = () => {
   const [loading, setLoading] = useState([]);
   const [modalOpen, setModalOpen] = useState("");
   const [selectedProduct, setSelectedProduct] = useState();
+  const { deleteProduct } = useProduct();
 
   const fetchProducts = async () => {
     try {
@@ -30,6 +33,21 @@ const Product = () => {
     }
   };
 
+  const editProduct = (product) => {
+    setSelectedProduct(product);
+    setModalOpen(true);
+  };
+
+  const confirm = async (id) => {
+    await deleteProduct(id, user);
+    await fetchProducts();
+    toast.success("Product deleted successfully");
+  };
+
+  const cancel = (e) => {
+    console.log(e);
+  };
+
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -38,7 +56,13 @@ const Product = () => {
     <div className="grid grid-cols-4 gap-4">
       <div className="col-span-4">
         <div class="hover:border-run p-1 float-right border border-gray-200 rounded-lg w-fit bg-white">
-          <Button className="border-0!" onClick={() => setModalOpen(true)}>
+          <Button
+            className="border-0!"
+            onClick={() => {
+              setSelectedProduct();
+              setModalOpen(true);
+            }}
+          >
             Add Product
           </Button>
         </div>
@@ -56,8 +80,20 @@ const Product = () => {
               ></Image>
             }
             actions={[
-              <Edit2 className="w-4 text-rose-400" />,
-              <Trash2 className="w-4 text-rose-400" />,
+              <Edit2
+                className="w-4 text-rose-400"
+                onClick={() => editProduct(product)}
+              />,
+              <Popconfirm
+                title="Delete the customer"
+                description="Are you sure to delete this customer?"
+                onConfirm={() => confirm(product.id)}
+                onCancel={cancel}
+                okText="Yes"
+                cancelText="No"
+              >
+                <Trash2 className="w-4 text-red-500 cursor-pointer" />
+              </Popconfirm>,
             ]}
           >
             <Card.Meta
@@ -81,6 +117,7 @@ const Product = () => {
         modalOpen={modalOpen}
         setModalOpen={setModalOpen}
         fetchProducts={fetchProducts}
+        selectedProduct={selectedProduct}
       />
     </div>
   );

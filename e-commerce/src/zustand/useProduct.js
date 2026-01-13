@@ -29,11 +29,31 @@ export const useProduct = create(
           console.log(error);
         }
       },
-
-      deleteUser: async (id) => {
+      updateProduct: async (payload, user) => {
+        debugger;
         try {
-          const user = get().user;
-          const res = await axios.delete("/users/" + id, {
+          const res = await axios.put(
+            "/products/" + payload.id,
+            {
+              ...payload,
+            },
+            {
+              headers: {
+                Authorization: "Bearer " + user.accessToken,
+              },
+            }
+          );
+          set({
+            ...res,
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      },
+
+      deleteProduct: async (id, user) => {
+        try {
+          const res = await axios.delete("/products/" + id, {
             headers: {
               Authorization: "Bearer " + user.accessToken,
             },

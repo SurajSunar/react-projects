@@ -53,15 +53,20 @@ const ProductSchema = Yup.object().shape({
     ),
 });
 
-const AddProduct = ({ modalOpen, setModalOpen, fetchProducts }) => {
+const AddProduct = ({
+  modalOpen,
+  setModalOpen,
+  fetchProducts,
+  selectedProduct,
+}) => {
   const { user } = useAuth();
-  const { addProduct } = useProduct();
+  const { addProduct, updateProduct } = useProduct();
 
   const [inputValue, setInputValue] = useState("");
   const [inputVisible, setInputVisible] = useState(false);
 
   const formik = useFormik({
-    initialValues: {
+    initialValues: selectedProduct || {
       name: "",
       image_url: "",
       price: "",
@@ -73,13 +78,20 @@ const AddProduct = ({ modalOpen, setModalOpen, fetchProducts }) => {
     validationSchema: ProductSchema,
     onSubmit: async (values) => {
       try {
-        await addProduct(values, user);
+        await (selectedProduct
+          ? updateProduct({ ...selectedProduct, ...values }, user)
+          : addProduct(values, user));
         setModalOpen(false);
         formik.resetForm();
         fetchProducts();
-        toast.success("Product added successfully");
+        toast.success(
+          selectedProduct
+            ? "Product edited successfully"
+            : "Product added successfully"
+        );
       } catch (e) {
         console.log(e);
+        toast.error(e.message);
       }
     },
   });

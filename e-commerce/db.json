@@ -13,21 +13,20 @@
       "email": "admin1@gmail.com",
       "password": "$2b$10$RSKzvYANc5ITBziK6IR6cOMaoyzMdgtncm6z3hsXeI7dJoLtAUGR.",
       "role": "user"
+    },
+    {
+      "name": "HardDrive",
+      "image_url": "http://example.com",
+      "price": "12",
+      "stock": "12",
+      "category": "Electronics",
+      "tags": [
+        "22"
+      ],
+      "id": 1767965075019
     }
   ],
   "products": [
-    {
-      "id": 1,
-      "name": "Laptop Pro 14",
-      "price": 1400,
-      "category": "Electronics",
-      "stock": 10,
-      "tags": [
-        "laptop",
-        "professional",
-        "high-performance"
-      ]
-    },
     {
       "id": 2,
       "name": "Smartphone X",
@@ -134,18 +133,6 @@
         "speaker",
         "bluetooth",
         "portable"
-      ]
-    },
-    {
-      "id": 1768284082309,
-      "name": "HardDisk 2",
-      "image_url": "http://example.com",
-      "price": "1200",
-      "stock": "12",
-      "category": "Storage",
-      "tags": [
-        "disk",
-        "storage"
       ]
     }
   ],
