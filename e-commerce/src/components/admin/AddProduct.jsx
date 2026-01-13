@@ -59,11 +59,18 @@ const AddProduct = ({ modalOpen, setModalOpen }) => {
   const [inputVisible, setInputVisible] = useState(false);
 
   const formik = useFormik({
-    initialValues: {},
+    initialValues: {
+      name: "",
+      image_url: "",
+      price: "",
+      stock: "",
+      category: "",
+      tags: [],
+    },
     enableReinitialize: true,
     validationSchema: ProductSchema,
     onSubmit: async (values) => {
-      await addProduct(values);
+      //await addProduct(values);
       setModalOpen(false);
     },
   });
@@ -73,38 +80,38 @@ const AddProduct = ({ modalOpen, setModalOpen }) => {
   };
 
   const handleInputConfirm = (e) => {
-    e.stopPropagation();
     e.preventDefault();
+    e.stopPropagation();
     const tags = formik.values.tags || [];
 
     if (inputValue && !tags.includes(inputValue)) {
-      //
-      formik.setFieldValue("tags", [...tags, ...[inputValue]]);
+      formik.setFieldValue("tags", [...tags, ...[inputValue]], false);
+      formik.valida;
     }
-    console.log(formik.values);
     setInputVisible(false);
     setInputValue("");
   };
 
   return (
     <div>
-      <Modal
-        title="Add Customer"
-        open={modalOpen}
-        onCancel={() => setModalOpen(false)}
-        footer={[
-          <Button
-            type="primary"
-            disabled={!formik.isValid}
-            onClick={formik.handleSubmit}
-          >
-            Save Changes
-          </Button>,
-        ]}
-      >
-        <div className="w-full bg-white grid grid-cols-1 h-fit rounded-xl animate__animated">
-          <div className="p-4">
-            <form className="space-y-4" onSubmit={formik.handleSubmit}>
+      <form className="space-y-4" onSubmit={formik.handleSubmit}>
+        <Modal
+          title="Add Customer"
+          open={modalOpen}
+          onCancel={() => setModalOpen(false)}
+          footer={[
+            <Button
+              htmlType="submit"
+              type="primary"
+              disabled={!formik.isValid}
+              onClick={formik.handleSubmit}
+            >
+              Save Changes
+            </Button>,
+          ]}
+        >
+          <div className="w-full bg-white grid grid-cols-1 h-fit rounded-xl animate__animated">
+            <div className="p-4">
               <div className="flex flex-col gap-2">
                 <label>Name</label>
                 <input
@@ -116,7 +123,7 @@ const AddProduct = ({ modalOpen, setModalOpen }) => {
                   value={formik.values.name}
                 />
                 {formik.errors.name && (
-                  <small className="text-xs text-red-500">
+                  <small className="text-xs text-red-500 mb-2">
                     {formik.errors.name}
                   </small>
                 )}
@@ -133,7 +140,7 @@ const AddProduct = ({ modalOpen, setModalOpen }) => {
                   value={formik.values.image_url}
                 />
                 {formik.errors.image_url && (
-                  <small className="text-xs text-red-500">
+                  <small className="text-xs text-red-500  mb-2">
                     {formik.errors.image_url}
                   </small>
                 )}
@@ -149,7 +156,7 @@ const AddProduct = ({ modalOpen, setModalOpen }) => {
                   value={formik.values.price}
                 />
                 {formik.errors.price && (
-                  <small className="text-xs text-red-500">
+                  <small className="text-xs text-red-500  mb-2">
                     {formik.errors.price}
                   </small>
                 )}
@@ -165,7 +172,7 @@ const AddProduct = ({ modalOpen, setModalOpen }) => {
                   value={formik.values.stock}
                 />
                 {formik.errors.stock && (
-                  <small className="text-xs text-red-500">
+                  <small className="text-xs text-red-500  mb-2">
                     {formik.errors.stock}
                   </small>
                 )}
@@ -184,7 +191,7 @@ const AddProduct = ({ modalOpen, setModalOpen }) => {
                   ))}
                 </select>
                 {formik.errors.category && (
-                  <small className="text-xs text-red-500">
+                  <small className="text-xs text-red-500  mb-2">
                     {formik.errors.category}
                   </small>
                 )}
@@ -210,8 +217,8 @@ const AddProduct = ({ modalOpen, setModalOpen }) => {
                 {inputVisible ? (
                   <Input
                     type="text"
-                    size="small"
-                    style={{ width: 78 }}
+                    size="middle"
+                    style={{ width: 100 }}
                     value={inputValue}
                     onChange={handleInputChange}
                     onBlur={(e) => handleInputConfirm(e)}
@@ -232,10 +239,10 @@ const AddProduct = ({ modalOpen, setModalOpen }) => {
                   </small>
                 )}
               </div>
-            </form>
+            </div>
           </div>
-        </div>
-      </Modal>
+        </Modal>
+      </form>
     </div>
   );
 };
