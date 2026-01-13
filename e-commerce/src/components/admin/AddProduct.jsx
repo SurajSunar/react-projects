@@ -4,6 +4,8 @@ import { useAuth } from "../../zustand/useAuth";
 import { Button, Input, Modal, Tag } from "antd";
 import { useRef, useState } from "react";
 import { PlusIcon } from "lucide-react";
+import { useProduct } from "../../zustand/useProduct";
+import { toast } from "react-toastify";
 
 const categories = ["Electronics", "Accessories", "Storage", "Audio"];
 
@@ -51,10 +53,10 @@ const ProductSchema = Yup.object().shape({
     ),
 });
 
-const AddProduct = ({ modalOpen, setModalOpen }) => {
-  const { updateUser } = useAuth();
+const AddProduct = ({ modalOpen, setModalOpen, fetchProducts }) => {
+  const { user } = useAuth();
+  const { addProduct } = useProduct();
 
-  const inputRef = useRef(null);
   const [inputValue, setInputValue] = useState("");
   const [inputVisible, setInputVisible] = useState(false);
 
@@ -70,8 +72,15 @@ const AddProduct = ({ modalOpen, setModalOpen }) => {
     enableReinitialize: true,
     validationSchema: ProductSchema,
     onSubmit: async (values) => {
-      //await addProduct(values);
-      setModalOpen(false);
+      try {
+        await addProduct(values, user);
+        setModalOpen(false);
+        formik.resetForm();
+        fetchProducts();
+        toast.success("Product added successfully");
+      } catch (e) {
+        console.log(e);
+      }
     },
   });
 
@@ -79,17 +88,17 @@ const AddProduct = ({ modalOpen, setModalOpen }) => {
     setInputValue(e.target.value);
   };
 
-  const handleInputConfirm = (e) => {
+  const handleInputConfirm = async (e) => {
     e.preventDefault();
     e.stopPropagation();
     const tags = formik.values.tags || [];
 
     if (inputValue && !tags.includes(inputValue)) {
-      formik.setFieldValue("tags", [...tags, ...[inputValue]], false);
-      formik.valida;
+      await formik.setFieldValue("tags", [...tags, ...[inputValue]]);
     }
     setInputVisible(false);
     setInputValue("");
+    console.log(formik.isValid, formik.values);
   };
 
   return (

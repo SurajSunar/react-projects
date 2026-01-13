@@ -135,6 +135,18 @@
         "bluetooth",
         "portable"
       ]
+    },
+    {
+      "id": 1768284082309,
+      "name": "HardDisk 2",
+      "image_url": "http://example.com",
+      "price": "1200",
+      "stock": "12",
+      "category": "Storage",
+      "tags": [
+        "disk",
+        "storage"
+      ]
     }
   ],
   "orders": []

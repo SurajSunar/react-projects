@@ -12,6 +12,7 @@ const Product = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState([]);
   const [modalOpen, setModalOpen] = useState("");
+  const [selectedProduct, setSelectedProduct] = useState();
 
   const fetchProducts = async () => {
     try {
@@ -76,7 +77,11 @@ const Product = () => {
         );
       })}
 
-      <AddProduct modalOpen={modalOpen} setModalOpen={setModalOpen} />
+      <AddProduct
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
+        fetchProducts={fetchProducts}
+      />
     </div>
   );
 };
