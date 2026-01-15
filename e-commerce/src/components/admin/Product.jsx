@@ -6,8 +6,7 @@ import { useAuth } from "../../zustand/useAuth";
 import AddProduct from "./AddProduct";
 import { useProduct } from "../../zustand/useProduct";
 import { toast } from "react-toastify";
-
-axios.defaults.baseURL = import.meta.env.VITE_API_URL;
+import { httpRequest } from "../../lib/httprequest";
 
 const Product = () => {
   const { user } = useAuth();
@@ -19,11 +18,7 @@ const Product = () => {
 
   const fetchProducts = async () => {
     try {
-      const customers = await axios.get("/products", {
-        headers: {
-          Authorization: "Bearer " + user.accessToken,
-        },
-      });
+      const customers = await httpRequest.get("/products");
 
       setProducts(customers.data);
     } catch (error) {

@@ -1,8 +1,7 @@
 import { isNaN, useFormik } from "formik";
 import * as Yup from "yup";
-import { useAuth } from "../../zustand/useAuth";
 import { Button, Input, Modal, Tag } from "antd";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { PlusIcon } from "lucide-react";
 import { useProduct } from "../../zustand/useProduct";
 import { toast } from "react-toastify";
@@ -59,7 +58,6 @@ const AddProduct = ({
   fetchProducts,
   selectedProduct,
 }) => {
-  const { user } = useAuth();
   const { addProduct, updateProduct } = useProduct();
 
   const [inputValue, setInputValue] = useState("");
@@ -79,8 +77,8 @@ const AddProduct = ({
     onSubmit: async (values) => {
       try {
         await (selectedProduct
-          ? updateProduct({ ...selectedProduct, ...values }, user)
-          : addProduct(values, user));
+          ? updateProduct({ ...selectedProduct, ...values })
+          : addProduct(values));
         setModalOpen(false);
         formik.resetForm();
         fetchProducts();

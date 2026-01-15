@@ -1,27 +1,17 @@
-import axios from "axios";
 import { toast } from "react-toastify";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-
-axios.defaults.baseURL = import.meta.env.VITE_API_URL;
+import { httpRequest } from "../lib/httprequest";
 
 export const useProduct = create(
   persist(
     (set, get) => ({
       products: null,
-      addProduct: async (payload, user) => {
+      addProduct: async (payload) => {
         try {
-          const res = await axios.post(
-            "/products",
-            {
-              ...payload,
-            },
-            {
-              headers: {
-                Authorization: "Bearer " + user.accessToken,
-              },
-            }
-          );
+          const res = await httpRequest.post("/products", {
+            ...payload,
+          });
           set({
             ...res,
           });
@@ -29,20 +19,11 @@ export const useProduct = create(
           console.log(error);
         }
       },
-      updateProduct: async (payload, user) => {
-        debugger;
+      updateProduct: async (payload) => {
         try {
-          const res = await axios.put(
-            "/products/" + payload.id,
-            {
-              ...payload,
-            },
-            {
-              headers: {
-                Authorization: "Bearer " + user.accessToken,
-              },
-            }
-          );
+          const res = await httpRequest.put("/products/" + payload.id, {
+            ...payload,
+          });
           set({
             ...res,
           });
@@ -51,46 +32,15 @@ export const useProduct = create(
         }
       },
 
-      deleteProduct: async (id, user) => {
+      deleteProduct: async (id) => {
         try {
-          const res = await axios.delete("/products/" + id, {
-            headers: {
-              Authorization: "Bearer " + user.accessToken,
-            },
-          });
+          const res = await httpRequest.delete("/products/" + id);
           set({
             ...res,
           });
         } catch (error) {
           console.log(error);
         }
-      },
-      login: async (state) => {
-        try {
-          const res = await axios.post("/login", {
-            ...state,
-          });
-          if (res.status === 200) {
-            const { user } = res.data;
-            set({ ...res.data });
-            window.location.replace(
-              user.role === "admin" ? "/admin/dashboard" : "/"
-            );
-          } else {
-            toast.error("Wrong username or password!");
-          }
-        } catch (error) {
-          set({
-            user: null,
-          });
-          toast.error(error?.response?.data?.message);
-        }
-      },
-      logout: () => {
-        set({
-          user: null,
-        });
-        window.location.href = "/login";
       },
     }),
     {

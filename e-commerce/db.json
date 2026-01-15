@@ -13,17 +13,6 @@
       "email": "admin1@gmail.com",
       "password": "$2b$10$RSKzvYANc5ITBziK6IR6cOMaoyzMdgtncm6z3hsXeI7dJoLtAUGR.",
       "role": "user"
-    },
-    {
-      "name": "HardDrive",
-      "image_url": "http://example.com",
-      "price": "12",
-      "stock": "12",
-      "category": "Electronics",
-      "tags": [
-        "22"
-      ],
-      "id": 1767965075019
     }
   ],
   "products": [
@@ -37,7 +26,8 @@
         "smartphone",
         "5g",
         "mobile"
-      ]
+      ],
+      "image_url": "https://i.dell.com/media/global-site-design/product_images/dell_client_products/laptops/latitude_laptops/14_9440/media_gallery/laptop-latitude-14-9440-t-gray-gallery-1.psd?fmt=pjpg&pscan=auto&scl=1&wid=3503&hei=2242&qlt=100,1&resMode=sharp2&size=3503,2242&chrss=full"
     },
     {
       "id": 3,
@@ -49,18 +39,6 @@
         "audio",
         "wireless",
         "bluetooth"
-      ]
-    },
-    {
-      "id": 4,
-      "name": "Mechanical Keyboard",
-      "price": 149,
-      "category": "Accessories",
-      "stock": 30,
-      "tags": [
-        "keyboard",
-        "mechanical",
-        "gaming"
       ]
     },
     {

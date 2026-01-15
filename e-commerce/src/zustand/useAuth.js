@@ -1,9 +1,7 @@
-import axios from "axios";
 import { toast } from "react-toastify";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-
-axios.defaults.baseURL = import.meta.env.VITE_API_URL;
+import { httpRequest } from "../lib/httprequest";
 
 export const useAuth = create(
   persist(
@@ -11,7 +9,7 @@ export const useAuth = create(
       user: null,
       signup: async (payload) => {
         try {
-          const res = await axios.post("/signup", {
+          const res = await httpRequest.post("/signup", {
             ...payload,
           });
           set({
@@ -24,18 +22,9 @@ export const useAuth = create(
       },
       updateUser: async (payload) => {
         try {
-          const user = get().user;
-          const res = await axios.put(
-            "/users/" + payload.id,
-            {
-              ...payload,
-            },
-            {
-              headers: {
-                Authorization: "Bearer " + user.accessToken,
-              },
-            }
-          );
+          const res = await httpRequest.put("/users/" + payload.id, {
+            ...payload,
+          });
           set({
             ...res,
           });
@@ -46,12 +35,7 @@ export const useAuth = create(
 
       deleteUser: async (id) => {
         try {
-          const user = get().user;
-          const res = await axios.delete("/users/" + id, {
-            headers: {
-              Authorization: "Bearer " + user.accessToken,
-            },
-          });
+          const res = await httpRequest.delete("/users/" + id);
           set({
             ...res,
           });
@@ -61,7 +45,7 @@ export const useAuth = create(
       },
       login: async (state) => {
         try {
-          const res = await axios.post("/login", {
+          const res = await httpRequest.post("/login", {
             ...state,
           });
           if (res.status === 200) {

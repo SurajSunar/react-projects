@@ -1,11 +1,9 @@
-import axios from "axios";
 import { Axis3D, Edit2, Loader2, Trash2 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../zustand/useAuth";
 import { Popconfirm, Table } from "antd";
 import EditUser from "./EditCustomer";
-
-axios.defaults.baseURL = import.meta.env.VITE_API_URL;
+import { httpRequest } from "../../lib/httprequest";
 
 const Customer = () => {
   const { user, deleteUser } = useAuth();
@@ -75,7 +73,7 @@ const Customer = () => {
   const fetchCustomers = async () => {
     try {
       setLoading(true);
-      const customers = await axios.get("/users", {
+      const customers = await httpRequest.get("/users", {
         headers: {
           Authorization: "Bearer " + user.accessToken,
         },
